@@ -8,13 +8,9 @@ Anthony Chen, Shaurya Sen, Amber Shen
 
 SongGuessr: A live multiplayer game where players guess the song that is playing.
 
-# High level description:
+# High level description & User Interface:
 
 Players connect to a host server. They initially wait in a lobby. When the game starts, the host plays a randomized song. Players type their guesses in the terminal, with a 1s cooldown. Players can see other players' guesses. When a player guesses a song correctly, the server will notify everyone. After each song, player scores are displayed in everyone's terminals.
-
-# User Interface
-
-The game will be played on terminals,
 
 # Technical Details:
 
@@ -37,7 +33,7 @@ The game will be played on terminals,
 
 # Intended pacing:
 
-| Day | Date    | Assigned                                                                                 | Task            |
+| Day | Date    | Task                                                                                     | Assigned        |
 | --- | ------- | ---------------------------------------------------------------------------------------- | --------------- |
 | 1   | 1/4/24  | Set up project (makefile, files, methods), create branches                               | All             |
 | 2   | 1/5/24  | Get user input for guess, with 1s cooldown between guesses _(no server)_                 | Amber           |
