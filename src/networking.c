@@ -1,4 +1,4 @@
-#include "networking.h"
+#include "../include/networking.h"
 
 /*Connect to the server
  *return the to_server socket descriptor
