@@ -16,6 +16,11 @@ player.o: src/player.c include/player.h
 	@gcc -c src/player.c
 utils.o: src/utils.c include/utils.h
 	@gcc -c src/utils.c
-
+host:_host
+	./host
+player: _player
+	./player
+game: _game
+	./game
 clean:
 	@rm -f *.o host player game
