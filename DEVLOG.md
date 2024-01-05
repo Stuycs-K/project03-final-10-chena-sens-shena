@@ -2,15 +2,15 @@
 
 ### 2024-01-02 - Setup day
 
-| Person  | Logs                                                                              | Time   |
+| Person  | Logs                                                                              | Time (min)   |
 | ------- | --------------------------------------------------------------------------------- | ------ |
-| Anthony | Set up project (makefile, files, methods)                                         | 15 min |
-|         | Create forking network server with sockets                                        | 5 min  |
-| Amber   | Create branches                                                                   | 5 min  |
-|         | Read input (guesses) from local machine with 1s delay (accidentally on main oops) | 20 min |
-| Shaurya | Update dev log                                                                    |        |
-|         | Found and added MP3 Player Library to use                                         |        |
-|         | add song function headers                                                         |        |
+| Anthony | Set up project (makefile, files, methods)                                         | 15 |
+|         | Create forking network server with sockets                                        | 5   |
+| Amber   | Create branches                                                                   | 5   |
+|         | Read input (guesses) from local machine with 1s delay (accidentally on main oops) | 20  |
+| Shaurya | Update dev log                                                                    |   5   |
+|         | Found and added MP3 Player Library to use                                         |   15   |
+|         | add song function headers                                                         |    5    |
 
 
 
