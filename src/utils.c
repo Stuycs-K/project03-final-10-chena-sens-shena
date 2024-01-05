@@ -3,4 +3,6 @@
 #include <mpg123.h>
 #include <ao/ao.h>
 
-void playMP3(const char *filename) {}
+void playSong(const char *filename) {}
+
+char * random_song(char** songs) {}
