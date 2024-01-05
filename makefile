@@ -19,11 +19,11 @@ utils.o: src/utils.c include/utils.h
 	@gcc -c src/utils.c
 
 game: _game
-	./game
+	@./game
 host:_host
-	./host
+	@./host
 player: _player
-	./player
+	@./player
 
 clean:
 	@rm -f *.o game host player
