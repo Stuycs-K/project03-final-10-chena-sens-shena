@@ -9,7 +9,10 @@
 | Amber   | Create branches                                                                   |        |
 |         | Read input (guesses) from local machine with 1s delay (accidentally on main oops) |        |
 | Shaurya | Update dev log                                                                    |        |
-|         | Set up files                                                                      |        |
+|         | Found and added MP3 Player Library to use                                         |        |
+|         | add song function headers                                                         |        |
+
+
 
 ### 2024-01-03 - Brief description
 
