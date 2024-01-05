@@ -48,25 +48,26 @@ int server_setup()
     // setup structs for getaddrinfo
     struct addrinfo *hints, *results;
     hints = calloc(1, sizeof(struct addrinfo));
+
     hints->ai_family = AF_INET;
     hints->ai_socktype = SOCK_STREAM;
     hints->ai_flags = AI_PASSIVE;
 
     getaddrinfo(NULL, PORT, hints, &results);
 
-    // create the socket
+    // create socket
     int clientd = socket(results->ai_family, results->ai_socktype, results->ai_protocol);
 
-    // this code should get around the address in use error
+    // this code allows the port to be freed after program exit.  (otherwise wait a few minutes)
     int yes = 1;
-    int sockOpt = setsockopt(clientd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes));
-    err(sockOpt, "sockopt  error");
+    err(setsockopt(clientd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes)), "sockopt error");
 
     // bind the socket to address and port
-    bind(clientd, results->ai_addr, results->ai_addrlen);
+    err(bind(clientd, results->ai_addr, results->ai_addrlen), "bind error");
 
     // set socket to listen state
     listen(clientd, 10);
+    printf("Listening on port %s\n", PORT);
 
     // free the structs used by getaddrinfo
     free(hints);
