@@ -6,9 +6,8 @@ void subserver_logic(int client_socket)
 
     while (1)
     {
-        
-        // read(client_socket, buff, sizeof(buff));
-        // write(client_socket, buff, sizeof(buff));
+        read(client_socket, buff, sizeof(buff));
+        write(client_socket, buff, sizeof(buff));
     }
 }
 

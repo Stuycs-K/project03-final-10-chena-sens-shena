@@ -14,11 +14,11 @@
 
 ### 2024-01-03 - Brief description
 
-| Person  | Logs | Time (min) |
-| ------- | ---- | ---------- |
-| Anthony | Log  | 0          |
-| Amber   | Log  | 0          |
-| Shaurya | Log  | 0          |
+| Person  | Logs               | Time (min) |
+| ------- | ------------------ | ---------- |
+| Anthony | Add print messages | 5          |
+| Amber   | Log                | 0          |
+| Shaurya | Log                | 0          |
 
 ### 2024-01-02 - Brief description
 
