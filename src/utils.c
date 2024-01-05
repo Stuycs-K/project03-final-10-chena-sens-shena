@@ -20,6 +20,9 @@ void playSong(const char *filename) {}
 
 char * random_song(char** songs) {
 
-    
+    int size = len(songs);
+    int n =  (rand_int() % size ) ;
+
+    return songs[n];
 
 }
