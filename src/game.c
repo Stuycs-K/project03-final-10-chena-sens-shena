@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
+#include "../include/networking.h"
 //Get user input for guess, with 1s cooldown between guesses (no server)'''
 //guesses are lowercase: add this note to directiosn in the beginning later
 
@@ -26,28 +27,31 @@ int checkAnswer(char* guess, char* ans) {
     int answer = strcmp(guess,ans);  //same 
     return answer;
 }
-void loop() {
+void awardPoints(struct player* p,char* guess, char* ans) { //player array, specific player index in array
+    if (checkAnswer(guess,ans)==0) {
+        printf("That is correct! Awarding 5 points to player %s\n",p->name);
+        int prev = p->points;
+        p->points = prev+5; //5 points for every correct guess 
+        printf("That player's current points: %d\n",p->points);
+    }
+}
+void loop(struct player* p/*later shoudl take in nothing*/) {
     char read[1024];
     char song[256] = "Placeholder";
     while (1) { //keep askign for input, 1s delay b/t guesses
+        //reset song here (will change every guess)
         userInput(read);
-        // song = "Placeholder"; //get song name from array later
-        int compare = checkAnswer(read,song);
-        // printf("Compare result: %d\n",compare);
-        if (checkAnswer(read,song)==0) {
-            printf("That is correct!\n");
-        }
+        //reads guesses of each player and checks them; find struct of that player here 
+        awardPoints(p,read,song);
         sleep(1);
     }
 }
 int main() {
-    // char read[1024];
-    // loop();
     char string[256] ="Blank Space";
     char test[256] ="Test";
-    // convertLower(string);
-    loop();
-    // printf("checkanswer: %d\n",checkAnswer(string,test));
-    // printf("%s\n",string);
-    // convertLower(hi);
+    struct player *t = malloc(sizeof(struct player));
+    strcpy(t->name,"Amber");
+    t->id = 1; //random number chosen
+    t->points = 0;
+    loop(t);
 }
