@@ -17,7 +17,7 @@
 | Person  | Logs               | Time (min) |
 | ------- | ------------------ | ---------- |
 | Anthony | Add print messages | 5          |
-| Amber   | Log                | 0          |
+| Amber   | Checking if a guess is correct, awarding points to correct player               | 40 (class), 30          |
 | Shaurya | Log                | 0          |
 
 ### 2024-01-02 - Brief description
