@@ -13,7 +13,7 @@ void userInput(char* returnString) {
     fflush(stdin);
     fgets(line,sizeof(line),stdin);
     strcpy(returnString,line);
-    printf("Read: %s\n",line); //this doesn't accurately test it, but alr tested prev in main
+    printf("Read: %s\n",returnString); 
 }
 void convertLower(char* string) {
     for (int i = 0;string[i];i++) {
@@ -22,10 +22,8 @@ void convertLower(char* string) {
 }
 int checkAnswer(char* guess, char* ans) {
     convertLower(ans); //convert song title to all lowercase
-    printf("Guess: %s, Ans: %s\n",guess,ans);
-    // printf("Converted lower: %s\n",ans);
+    guess[strcspn(guess, "\n")] = 0; //remove the newline from the end of the guess when they press enter
     int answer = strcmp(guess,ans);  //same 
-    // printf("Compare result: %d\n",answer);
     return answer;
 }
 void loop() {
@@ -35,9 +33,9 @@ void loop() {
         userInput(read);
         // song = "Placeholder"; //get song name from array later
         int compare = checkAnswer(read,song);
-        printf("Compare result: %d\n",compare);
+        // printf("Compare result: %d\n",compare);
         if (checkAnswer(read,song)==0) {
-            printf("That is correct!");
+            printf("That is correct!\n");
         }
         sleep(1);
     }
