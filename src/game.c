@@ -21,23 +21,24 @@ void convertLower(char* string) {
     }
 }
 int checkAnswer(char* guess, char* ans) {
-    printf("Checking answer now");
     convertLower(ans); //convert song title to all lowercase
-    printf("Converted lower: %s\n",ans);
+    printf("Guess: %s, Ans: %s\n",guess,ans);
+    // printf("Converted lower: %s\n",ans);
     int answer = strcmp(guess,ans);  //same 
     // printf("Compare result: %d\n",answer);
     return answer;
 }
 void loop() {
     char read[1024];
-    char* song;
+    char song[256] = "Placeholder";
     while (1) { //keep askign for input, 1s delay b/t guesses
         userInput(read);
-        song = "Placeholder"; //get song name from array later
-        // printf("Compare result: %d",checkAnswer(read,song));
-        // if (checkAnswer(read,song)==0) {
-        //     printf("That is correct!");
-        // }
+        // song = "Placeholder"; //get song name from array later
+        int compare = checkAnswer(read,song);
+        printf("Compare result: %d\n",compare);
+        if (checkAnswer(read,song)==0) {
+            printf("That is correct!");
+        }
         sleep(1);
     }
 }
@@ -47,8 +48,8 @@ int main() {
     char string[256] ="Blank Space";
     char test[256] ="Test";
     // convertLower(string);
-    // loop();
-    printf("checkanswer: %d\n",checkAnswer(string,test));
+    loop();
+    // printf("checkanswer: %d\n",checkAnswer(string,test));
     // printf("%s\n",string);
     // convertLower(hi);
 }
