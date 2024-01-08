@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
+
 #include "../include/networking.h"
 //Get user input for guess, with 1s cooldown between guesses (no server)'''
 //guesses are lowercase: add this note to directiosn in the beginning later
@@ -46,16 +47,30 @@ void loop(struct player* p/*later shoudl take in nothing*/) {
         sleep(1);
     }
 }
-void leaderboard(struct player *playerlist[n]) {
+void leaderboard(struct player **playerlist, int n) {
+    // int len = sizeof(playerlist)/sizeof(struct player*);
+    printf("Array size: %d\n",n);
+    for (int i = 0;i<n;i++) {
+        printf("i: %d name: %s id: %d points: %d\n",i,playerlist[i]->name,playerlist[i]->id,playerlist[i]->points);
+    }
     //5 players, change later
 
 }
 int main() {
     char string[256] ="Blank Space";
     char test[256] ="Test";
+    struct player *playerlist[2];
     struct player *t = malloc(sizeof(struct player));
     strcpy(t->name,"Amber");
     t->id = 1; //random number chosen
     t->points = 0;
-    loop(t);
+    playerlist[0] = t;
+    struct player *t1 = malloc(sizeof(struct player));
+    strcpy(t1->name,"Anthony");
+    t1->id = 1; //random number chosen
+    t1->points = 15;
+    playerlist[1] = t1;
+    leaderboard(playerlist,2);
+    // strcpy()
+    // loop(t);
 }
