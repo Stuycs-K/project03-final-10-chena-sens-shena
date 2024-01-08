@@ -46,6 +46,10 @@ void loop(struct player* p/*later shoudl take in nothing*/) {
         sleep(1);
     }
 }
+void leaderboard(struct player *playerlist[n]) {
+    //5 players, change later
+
+}
 int main() {
     char string[256] ="Blank Space";
     char test[256] ="Test";
