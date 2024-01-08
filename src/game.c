@@ -2,27 +2,56 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <ctype.h>
+#include "../include/networking.h"
 //Get user input for guess, with 1s cooldown between guesses (no server)'''
+//guesses are lowercase: add this note to directiosn in the beginning later
 
 void userInput(char* returnString) {
-    while(1) {
-        char line[1024];
-        printf("Guess: ");
-        fflush(stdout);
-        fflush(stdin);
-        fgets(line,sizeof(line),stdin);
-        strcpy(returnString,line);
-        printf("Read: %s\n",line); //this doesn't accurately test it, but alr tested prev in main
+    char line[1024];
+    printf("Guess: ");
+    fflush(stdout);
+    fflush(stdin);
+    fgets(line,sizeof(line),stdin);
+    strcpy(returnString,line);
+    printf("Read: %s\n",returnString); 
+}
+void convertLower(char* string) {
+    for (int i = 0;string[i];i++) {
+        string[i] = tolower(string[i]);
+    }
+}
+int checkAnswer(char* guess, char* ans) {
+    convertLower(ans); //convert song title to all lowercase
+    guess[strcspn(guess, "\n")] = 0; //remove the newline from the end of the guess when they press enter
+    int answer = strcmp(guess,ans);  //same 
+    return answer;
+}
+void awardPoints(struct player* p,char* guess, char* ans) { //player array, specific player index in array
+    if (checkAnswer(guess,ans)==0) {
+        printf("That is correct! Awarding 5 points to player %s\n",p->name);
+        int prev = p->points;
+        p->points = prev+5; //5 points for every correct guess 
+        printf("That player's current points: %d\n",p->points);
+    }
+}
+void loop(struct player* p/*later shoudl take in nothing*/) {
+    char read[1024];
+    char song[256] = "Placeholder";
+    while (1) { //keep askign for input, 1s delay b/t guesses
+        //reset song here (will change every guess)
+        userInput(read);
+        //reads guesses of each player and checks them; find struct of that player here 
+        awardPoints(p,read,song);
         sleep(1);
     }
-    // sleep(1);
 }
 int main() {
-    char read[1024];
-    // while(1) {
-        userInput(read);
-    //     printf("Read: %s\n",read);
-    //     sleep(1);
-    // }
-
+    char string[256] ="Blank Space";
+    char test[256] ="Test";
+    struct player *t = malloc(sizeof(struct player));
+    strcpy(t->name,"Amber");
+    t->id = 1; //random number chosen
+    t->points = 0;
+    loop(t);
 }
