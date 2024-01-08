@@ -48,18 +48,7 @@ void loop(struct player* p/*later shoudl take in nothing*/) {
     }
 }
 void leaderboard(struct player **playerlist, int n) {
-    // int len = sizeof(playerlist)/sizeof(struct player*);
-    //put array into text file 
-    //sort struct array
-    //put into text file 
-    //read from text file 
-    printf("Array size: %d\n",n);
-    for (int i = 0;i<n;i++) {
-        printf("i: %d name: %s id: %d points: %d\n",i,playerlist[i]->name,playerlist[i]->id,playerlist[i]->points);
-
-    }
-    // int index[n];
-    //simple substitution sort, using the index
+    //sort the players by score 
     for(int i=0;i<n-1;i++) {
         for(int j=i+1;j<n;j++) {
             if(playerlist[i]->points > playerlist[j]->points) { //compare thru the index
@@ -69,9 +58,9 @@ void leaderboard(struct player **playerlist, int n) {
             }
         }
     }
-    printf("Sorted\n");
+    printf("LEADERBOARD: \n");
     for (int i = 0;i<n;i++) {
-        printf("i: %d name: %s id: %d points: %d\n",i,playerlist[i]->name,playerlist[i]->id,playerlist[i]->points);
+        printf("%d. %s (id: %d): %d\n",i+1,playerlist[i]->name,playerlist[i]->id,playerlist[i]->points);
 
     }
     //2 players, change later
