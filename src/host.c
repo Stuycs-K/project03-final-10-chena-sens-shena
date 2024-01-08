@@ -27,10 +27,9 @@ void handle_client(fd_set read_fds, int *clients)
         {
             if (read(client_socket, buff, sizeof(buff)))
             {
-                buff[0] = 'B';
-
                 for (int j = 0; j < MAX_CLIENTS; ++j)
-                    write(client_socket, buff, sizeof(buff));
+                    if (i != j && clients[j] != 0)
+                        write(clients[j], buff, sizeof(buff));
             }
             else
             {

@@ -1,19 +1,5 @@
 #include "../include/networking.h"
 
-void clientLogic(int server_socket)
-{
-    char buff[BUFFER_SIZE];
-
-    while (1)
-    {
-        fgets(buff, BUFFER_SIZE, stdin);
-        write(server_socket, buff, sizeof(buff));
-
-        read(server_socket, buff, sizeof(buff));
-        printf("-> %s\n", buff);
-    }
-}
-
 int main(int argc, char *argv[])
 {
     char *IP = "127.0.0.1";
@@ -24,7 +10,29 @@ int main(int argc, char *argv[])
     int server_socket = client_tcp_handshake(IP);
     printf("Successfully connected to %s\n", IP);
 
-    clientLogic(server_socket);
+    char buff[BUFFER_SIZE];
+    fd_set read_fds;
+
+    while (1)
+    {
+        FD_ZERO(&read_fds);
+
+        FD_SET(server_socket, &read_fds);
+        FD_SET(STDIN_FILENO, &read_fds);
+
+        err(select(server_socket + 1, &read_fds, NULL, NULL, NULL), "select error");
+
+        if (FD_ISSET(server_socket, &read_fds))
+        {
+            read(server_socket, buff, sizeof(buff));
+            printf("%s", buff);
+        }
+        if (FD_ISSET(STDIN_FILENO, &read_fds))
+        {
+            fgets(buff, sizeof(buff), stdin);
+            write(server_socket, buff, sizeof(buff));
+        }
+    }
 
     return 0;
 }

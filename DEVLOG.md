@@ -26,7 +26,7 @@
 
 | Person  | Logs                              | Time (min) |
 | ------- | --------------------------------- | ---------- |
-| Anthony | Handle multiple client read/write | 15         |
+| Anthony | Handle multiple client read/write | 30         |
 | Amber   | log                               | 0          |
 | Shaurya | log                               | 0          |
 
