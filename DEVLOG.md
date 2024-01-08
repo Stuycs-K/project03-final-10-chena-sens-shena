@@ -2,24 +2,24 @@
 
 ### 2024-01-02 - Setup day
 
-| Person  | Logs                                                                              | Time (min) |
-| ------- | --------------------------------------------------------------------------------- | ---------- |
-| Anthony | Set up project (makefile, files, methods)                                         | 15         |
-|         | Create forking network server with sockets                                        | 5          |
-| Amber   | Create branches                                                                   | 5          |
-|         | Read input (guesses) from local machine with 1s delay (accidentally on main oops) | 20         |
-| Shaurya | Update dev log                                                                    | 5          |
-|         | Found and added MP3 Player Library to use                                         | 15         |
-|         | add song function headers                                                         | 5          |
+| Person  | Logs                                                  | Time (min) |
+| ------- | ----------------------------------------------------- | ---------- |
+| Anthony | Set up project (makefile, files, methods)             | 15         |
+|         | Create forking network server with sockets            | 5          |
+| Amber   | Create branches                                       | 5          |
+|         | Read input (guesses) from local machine with 1s delay | 20         |
+| Shaurya | Update dev log                                        | 5          |
+|         | Find and add MP3 Player Library to use                | 15         |
+|         | Add song function headers                             | 5          |
 
-### 2024-01-03 - Brief description
+### 2024-01-03 - Branch out
 
-| Person  | Logs               | Time (min) |
-| ------- | ------------------ | ---------- |
-| Anthony | Add print messages | 5          |
-| Amber   | Checking if a guess is correct, awarding points to correct player               | 40 (class), 30          |
-| Shaurya | Add Rnadom Int and random song functions                | 40 mins          |
-|    | Worked on using MPG123 and portaudio to play audio. figured out how to use external libraries                | 30 mins          |
+| Person  | Logs                                                                                       | Time (min) |
+| ------- | ------------------------------------------------------------------------------------------ | ---------- |
+| Anthony | Add print messages                                                                         | 5          |
+| Amber   | Check if a guess is correct, award points to correct player                                | 70         |
+| Shaurya | Add random int and random song functions                                                   | 40         |
+|         | Work on using MPG123 and portaudio to play audio. Figure out how to use external libraries | 30         |
 
 ### 2024-01-02 - Brief description
 
