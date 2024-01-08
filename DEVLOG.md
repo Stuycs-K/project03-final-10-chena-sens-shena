@@ -17,6 +17,7 @@
 | Person  | Logs                                                                                       | Time (min) |
 | ------- | ------------------------------------------------------------------------------------------ | ---------- |
 | Anthony | Add print messages                                                                         | 5          |
+|         | Handle multiple client joins with select                                                   | 30         |
 | Amber   | Check if a guess is correct, award points to correct player                                | 70         |
 | Shaurya | Add random int and random song functions                                                   | 40         |
 |         | Work on using MPG123 and portaudio to play audio. Figure out how to use external libraries | 30         |

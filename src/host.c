@@ -15,6 +15,15 @@ void handle_new_client(int listen_socket, int *clients)
         }
 }
 
+void handle_client(int *clients)
+{
+    for (int i = 0; i < MAX_CLIENTS; ++i)
+    {
+        int client_socket = clients[i];
+        printf("%d\n", client_socket);
+    }
+}
+
 int main()
 {
     int listen_socket = server_setup();
@@ -33,6 +42,8 @@ int main()
 
         if (FD_ISSET(listen_socket, &read_fds))
             handle_new_client(listen_socket, clients);
+        else
+            handle_client(clients);
     }
 
     return 0;
