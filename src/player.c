@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         IP = argv[1];
 
     int server_socket = client_tcp_handshake(IP);
-    printf("[%s] Successfully connected\n", IP);
+    printf("Successfully connected to %s\n", IP);
 
     clientLogic(server_socket);
 
