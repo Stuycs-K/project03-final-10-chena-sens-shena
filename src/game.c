@@ -49,9 +49,14 @@ void loop(struct player* p/*later shoudl take in nothing*/) {
 }
 void leaderboard(struct player **playerlist, int n) {
     // int len = sizeof(playerlist)/sizeof(struct player*);
+    //put array into text file 
+    //sort struct array
+    //put into text file 
+    //read from text file 
     printf("Array size: %d\n",n);
     for (int i = 0;i<n;i++) {
         printf("i: %d name: %s id: %d points: %d\n",i,playerlist[i]->name,playerlist[i]->id,playerlist[i]->points);
+
     }
     //5 players, change later
 
