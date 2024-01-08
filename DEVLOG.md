@@ -18,7 +18,8 @@
 | ------- | ------------------ | ---------- |
 | Anthony | Add print messages | 5          |
 | Amber   | Checking if a guess is correct, awarding points to correct player               | 40 (class), 30          |
-| Shaurya | Log                | 0          |
+| Shaurya | Add Rnadom Int and random song functions                | 40 mins          |
+|    | Worked on using MPG123 and portaudio to play audio. figured out how to use external libraries                | 30 mins          |
 
 ### 2024-01-02 - Brief description
 
