@@ -58,7 +58,23 @@ void leaderboard(struct player **playerlist, int n) {
         printf("i: %d name: %s id: %d points: %d\n",i,playerlist[i]->name,playerlist[i]->id,playerlist[i]->points);
 
     }
-    //5 players, change later
+    // int index[n];
+    //simple substitution sort, using the index
+    for(int i=0;i<n-1;i++) {
+        for(int j=i+1;j<n;j++) {
+            if(playerlist[i]->points > playerlist[j]->points) { //compare thru the index
+                struct player * temp=playerlist[i];    //and swap only the indices
+                playerlist[i] = playerlist[j];
+                playerlist[j] = temp;
+            }
+        }
+    }
+    printf("Sorted\n");
+    for (int i = 0;i<n;i++) {
+        printf("i: %d name: %s id: %d points: %d\n",i,playerlist[i]->name,playerlist[i]->id,playerlist[i]->points);
+
+    }
+    //2 players, change later
 
 }
 int main() {
@@ -68,14 +84,20 @@ int main() {
     struct player *t = malloc(sizeof(struct player));
     strcpy(t->name,"Amber");
     t->id = 1; //random number chosen
-    t->points = 0;
+    t->points = 20;
     playerlist[0] = t;
     struct player *t1 = malloc(sizeof(struct player));
     strcpy(t1->name,"Anthony");
     t1->id = 1; //random number chosen
     t1->points = 15;
     playerlist[1] = t1;
-    leaderboard(playerlist,2);
+    
+    struct player *t2 = malloc(sizeof(struct player));
+    strcpy(t2->name,"Shaurya");
+    t2->id = 1; //random number chosen
+    t2->points = 5;
+    playerlist[2] = t2;
+    leaderboard(playerlist,3);
     // strcpy()
     // loop(t);
 }
