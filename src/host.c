@@ -1,56 +1,39 @@
 #include "../include/networking.h"
 
-void subserver_logic(int listen_socket)
+void handle_new_client(int listen_socket, int *clients)
 {
+    int client_socket = server_tcp_handshake(listen_socket);
+    err(client_socket, "client accept error");
+
+    printf("Client %d joined\n", client_socket);
+
+    for (int i = 0; i < MAX_CLIENTS; ++i)
+        if (clients[i] == 0)
+        {
+            clients[i] = client_socket;
+            break;
+        }
+}
+
+int main()
+{
+    int listen_socket = server_setup();
+
     fd_set read_fds;
+
+    int clients[MAX_CLIENTS];
     char buff[BUFFER_SIZE];
 
     while (1)
     {
         FD_ZERO(&read_fds);
-
-        FD_SET(STDIN_FILENO, &read_fds);  // stdin
-        FD_SET(listen_socket, &read_fds); // socket
+        FD_SET(listen_socket, &read_fds);
 
         err(select(listen_socket + 1, &read_fds, NULL, NULL, NULL), "select error");
 
-        if (FD_ISSET(STDIN_FILENO, &read_fds)) // stdin
-        {
-            fgets(buff, sizeof(buff), stdin);
-            printf("[STDIN] %s\n", buff);
-        }
-        if (FD_ISSET(listen_socket, &read_fds)) // socket
-        {
-            int client_socket = server_tcp_handshake(listen_socket);
-            printf("[SOCKET] Connected\n");
-
-            read(client_socket, buff, sizeof(buff));
-            printf("[SOCKET] %s\n", buff);
-
-            // close(client_socket);
-        }
-
-        // read(client_socket, buff, sizeof(buff));
-        // write(client_socket, buff, sizeof(buff));
+        if (FD_ISSET(listen_socket, &read_fds))
+            handle_new_client(listen_socket, clients);
     }
-}
 
-int main(int argc, char *argv[])
-{
-    int listen_socket = server_setup();
-    subserver_logic(listen_socket);
-
-    // while (1)
-    // {
-    //     int client_socket = server_tcp_handshake(listen_socket);
-    //     printf("Client joined\n");
-
-    //     if (fork() == 0)
-    //     {
-    //         subserver_logic(listen_socket, client_socket);
-    //         exit(0);
-    //     }
-
-    //     close(client_socket);
-    // }
+    return 0;
 }
