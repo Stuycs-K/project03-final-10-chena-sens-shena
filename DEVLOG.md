@@ -17,14 +17,18 @@
 | Person  | Logs                                                                                       | Time (min) |
 | ------- | ------------------------------------------------------------------------------------------ | ---------- |
 | Anthony | Add print messages                                                                         | 5          |
-|         | Handle multiple client connect/read/write                                                  | 45         |
+|         | Handle multiple client connect                                                             | 30         |
 | Amber   | Check if a guess is correct, award points to correct player                                | 70         |
 | Shaurya | Add random int and random song functions                                                   | 40         |
 |         | Work on using MPG123 and portaudio to play audio. Figure out how to use external libraries | 30         |
 
-### 2024-01-02 - Brief description
+### 2024-01-08 - Brief description
 
-Expanded description including how much time was spent on task.
+| Person  | Logs                              | Time (min) |
+| ------- | --------------------------------- | ---------- |
+| Anthony | Handle multiple client read/write | 15         |
+| Amber   | log                               | 0          |
+| Shaurya | log                               | 0          |
 
 ### 2024-01-03 - Brief description
 
