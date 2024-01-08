@@ -25,17 +25,17 @@ void handle_client(fd_set read_fds, int *clients)
 
         if (FD_ISSET(client_socket, &read_fds))
         {
-            int bytes = read(client_socket, buff, sizeof(buff));
-
-            if (bytes == 0)
+            if (read(client_socket, buff, sizeof(buff)))
             {
-                close(client_socket);
-                clients[i] = 0;
+                buff[0] = 'B';
+
+                for (int j = 0; j < MAX_CLIENTS; ++j)
+                    write(client_socket, buff, sizeof(buff));
             }
             else
             {
-                buff[0] = 'B';
-                write(client_socket, buff, sizeof(buff));
+                close(client_socket);
+                clients[i] = 0;
             }
         }
     }
