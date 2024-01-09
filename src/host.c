@@ -4,11 +4,13 @@
 void write_all(char *msg, int i, struct player *players)
 {
     char buff[BUFFER_SIZE];
-    sprintf(buff, "%s: %s", players[i].name, msg);
+    sprintf(buff, "%s: %s", players[i].name, msg); // name duplicated here?
 
     for (int j = 0; j < MAX_PLAYERS; ++j)
         if (i != j && players[j].id != 0)
             write(players[j].id, buff, sizeof(buff));
+
+    printf("%s", buff);
 }
 
 void handle_new_client(int listen_socket, struct player *players)

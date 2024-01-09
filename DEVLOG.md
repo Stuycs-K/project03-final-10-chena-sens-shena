@@ -32,11 +32,12 @@
 
 ### 2024-01-09 - Brief description
 
-| Person  | Logs | Time (min) |
-| ------- | ---- | ---------- |
-| Anthony | log  | 0          |
-| Amber   | log  | 0          |
-| Shaurya | log  | 0          |
+| Person  | Logs                                                | Time (min) |
+| ------- | --------------------------------------------------- | ---------- |
+| Anthony | Use player structs and ask for player names         | 15         |
+|         | Display messages to everyone (bug: duplicates name) | 15         |
+| Amber   | log                                                 | 0          |
+| Shaurya | log                                                 | 0          |
 
 ### 2024-01-04 - Brief description
 
