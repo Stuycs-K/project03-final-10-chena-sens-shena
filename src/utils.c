@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+
 
 
 // int rand_int() {
@@ -14,7 +16,14 @@
 
 // }
 
-// void playSong(const char *filename) {}
+void playSong(char *filename) {
+
+    char* filename = "random.mp3";
+    char* args[] = {"mpg123", filename, NULL};
+    execvp("mpg123", args);
+    return 0;
+
+}
 
 // char * random_song(char** songs) {
 
