@@ -24,11 +24,11 @@
 
 ### 2024-01-08 - Brief description
 
-| Person  | Logs                              | Time (min) |
-| ------- | --------------------------------- | ---------- |
-| Anthony | Handle multiple client read/write | 15         |
-| Amber   | Create a leaderboard for players that sorts every time                               | 40          |
-| Shaurya | log                               | 0          |
+| Person  | Logs                                                   | Time (min) |
+| ------- | ------------------------------------------------------ | ---------- |
+| Anthony | Handle multiple client read/write                      | 30         |
+| Amber   | Create a leaderboard for players that sorts every time | 40         |
+| Shaurya | log                                                    | 0          |
 
 ### 2024-01-03 - Brief description
 
