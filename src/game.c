@@ -47,6 +47,15 @@ void loop(struct player* p/*later shoudl take in nothing*/) {
         sleep(1);
     }
 }
+void updateScore(struct player **playerlist,int n, int playerid, int newscore) {
+    for (int i = 0;i<n;i++) {
+        if (playerlist[i]->id==playerid) { //player whos score u want to update
+            printf("Changing %s's (id: %d) score (previous: %d) to %d\n",playerlist[i]->name,playerid,playerlist[i]->points,newscore);
+            playerlist[i]->points = newscore;
+        }
+    }
+
+}
 void leaderboard(struct player **playerlist, int n) {
     //sort the players by score 
     for(int i=0;i<n-1;i++) {
@@ -77,15 +86,17 @@ int main() {
     playerlist[0] = t;
     struct player *t1 = malloc(sizeof(struct player));
     strcpy(t1->name,"Anthony");
-    t1->id = 1; //random number chosen
+    t1->id = 2; //random number chosen
     t1->points = 15;
     playerlist[1] = t1;
     
     struct player *t2 = malloc(sizeof(struct player));
     strcpy(t2->name,"Shaurya");
-    t2->id = 1; //random number chosen
+    t2->id = 3; //random number chosen
     t2->points = 5;
     playerlist[2] = t2;
+    leaderboard(playerlist,3);
+    updateScore(playerlist,3,3,50);
     leaderboard(playerlist,3);
     // strcpy()
     // loop(t);
