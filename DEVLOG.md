@@ -28,7 +28,7 @@
 | ------- | ------------------------------------------------------ | ---------- |
 | Anthony | Handle multiple client read/write                      | 30         |
 | Amber   | Create a leaderboard for players that sorts every time | 40         |
-| Shaurya | log                                                    | 0          |
+| Shaurya | Starting using different library SLD2 and tried to get it working to play audio files | 30          |
 
 ### 2024-01-03 - Brief description
 
