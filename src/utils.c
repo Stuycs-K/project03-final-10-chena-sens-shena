@@ -18,10 +18,15 @@
 
 void playSong(char *filename) {
 
-    char* filename = "random.mp3";
-    char* args[] = {"mpg123", filename, NULL};
-    execvp("mpg123", args);
-    return 0;
+    int p = fork();
+
+    if (p == 0 ) {
+        char* filename = "random.mp3";
+        char* args[] = {"mpg123", filename, NULL};
+        execvp("mpg123", args);
+        return 0;
+    }    
+    
 
 }
 
