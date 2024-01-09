@@ -1,4 +1,5 @@
 #include "../include/networking.h"
+#include "../include/utils.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,6 +10,14 @@ int main(int argc, char *argv[])
 
     int server_socket = client_tcp_handshake(IP);
     printf("Successfully connected to %s\n", IP);
+
+    char name[NAME_SIZE];
+
+    printf("Enter your name: ");
+    fgets(name, sizeof(name), stdin);
+    name[strlen(name) - 1] = '\0';
+    name[NAME_SIZE - 1] = '\0';
+    write(server_socket, name, sizeof(name));
 
     char buff[BUFFER_SIZE];
     fd_set read_fds;
