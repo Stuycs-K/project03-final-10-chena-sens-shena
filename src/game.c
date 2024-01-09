@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <ctype.h>
 
-#include "../include/networking.h"
+#include "../include/utils.h"
 //Get user input for guess, with 1s cooldown between guesses (no server)'''
 //guesses are lowercase: add this note to directiosn in the beginning later
 
