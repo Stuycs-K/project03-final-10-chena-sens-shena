@@ -22,17 +22,21 @@
 | Shaurya | Add random int and random song functions                                                   | 40         |
 |         | Work on using MPG123 and portaudio to play audio. Figure out how to use external libraries | 30         |
 
-### 2024-01-08 - Brief description
+### 2024-01-08 - Branch progress
 
-| Person  | Logs                                                   | Time (min) |
-| ------- | ------------------------------------------------------ | ---------- |
-| Anthony | Handle multiple client read/write                      | 30         |
-| Amber   | Create a leaderboard for players that sorts every time | 40         |
-| Shaurya | Starting using different library SLD2 and tried to get it working to play audio files | 30          |
+| Person  | Logs                                                                             | Time (min) |
+| ------- | -------------------------------------------------------------------------------- | ---------- |
+| Anthony | Handle multiple client read/write                                                | 30         |
+| Amber   | Create a leaderboard for players that sorts every time                           | 40         |
+| Shaurya | Start using different library SLD2 and try to get it working to play audio files | 30         |
 
-### 2024-01-03 - Brief description
+### 2024-01-09 - Brief description
 
-Expanded description including how much time was spent on task.
+| Person  | Logs | Time (min) |
+| ------- | ---- | ---------- |
+| Anthony | log  | 0          |
+| Amber   | log  | 0          |
+| Shaurya | log  | 0          |
 
 ### 2024-01-04 - Brief description
 
