@@ -35,7 +35,7 @@
 | Person  | Logs | Time (min) |
 | ------- | ---- | ---------- |
 | Anthony | log  | 0          |
-| Amber   | log  | 0          |
+| Amber   | Create an update score function, restructure player list  | 30          |
 | Shaurya | log  | 0          |
 
 ### 2024-01-04 - Brief description
