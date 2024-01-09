@@ -3,7 +3,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
-#include "../include/networking.h"
+
+#include "../include/utils.h"
 //Get user input for guess, with 1s cooldown between guesses (no server)'''
 //guesses are lowercase: add this note to directiosn in the beginning later
 
@@ -46,12 +47,46 @@ void loop(struct player* p/*later shoudl take in nothing*/) {
         sleep(1);
     }
 }
+void leaderboard(struct player **playerlist, int n) {
+    //sort the players by score 
+    for(int i=0;i<n-1;i++) {
+        for(int j=i+1;j<n;j++) {
+            if(playerlist[i]->points > playerlist[j]->points) { //compare thru the index
+                struct player * temp=playerlist[i];    //and swap only the indices
+                playerlist[i] = playerlist[j];
+                playerlist[j] = temp;
+            }
+        }
+    }
+    printf("LEADERBOARD: \n");
+    for (int i = 0;i<n;i++) {
+        printf("%d. %s (id: %d): %d\n",i+1,playerlist[i]->name,playerlist[i]->id,playerlist[i]->points);
+
+    }
+    //2 players, change later
+
+}
 int main() {
     char string[256] ="Blank Space";
     char test[256] ="Test";
+    struct player *playerlist[2];
     struct player *t = malloc(sizeof(struct player));
     strcpy(t->name,"Amber");
     t->id = 1; //random number chosen
-    t->points = 0;
-    loop(t);
+    t->points = 20;
+    playerlist[0] = t;
+    struct player *t1 = malloc(sizeof(struct player));
+    strcpy(t1->name,"Anthony");
+    t1->id = 1; //random number chosen
+    t1->points = 15;
+    playerlist[1] = t1;
+    
+    struct player *t2 = malloc(sizeof(struct player));
+    strcpy(t2->name,"Shaurya");
+    t2->id = 1; //random number chosen
+    t2->points = 5;
+    playerlist[2] = t2;
+    leaderboard(playerlist,3);
+    // strcpy()
+    // loop(t);
 }

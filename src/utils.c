@@ -1,7 +1,5 @@
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <mpg123.h>
-// #include <ao/ao.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 // int rand_int() {

@@ -19,12 +19,6 @@
 #define BUFFER_SIZE 1024
 #define MAX_CLIENTS 2
 
-struct player {
-  int id;
-  char name[15];
-  int points;
-};
-
 void err(int i, char *message);
 int server_setup();
 int client_tcp_handshake(char *server_address);
