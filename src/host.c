@@ -1,6 +1,12 @@
 #include "../include/networking.h"
 #include "../include/utils.h"
-
+#include <signal.h>
+static void sighandler(int signo) {
+  if (signo==SIGINT) {
+    // close(client_socket);
+    exit(1);
+  }
+}
 void write_all(char *msg, int i, struct player *players)
 {
     char buff[BUFFER_SIZE];
@@ -85,6 +91,11 @@ int main()
             handle_new_client(listen_socket, players);
 
         handle_client(read_fds, players);
+        
+        struct sigaction act;
+        act.sa_handler = sighandler;
+        // act.sa_flags = SA_RESTART;
+        sigaction(SIGINT, &act, NULL);
     }
 
     return 0;
