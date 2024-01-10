@@ -22,17 +22,15 @@ void playSong(char *filename) {
     int p = fork();
 
     if (p == 0 ) {
-        char* filename = "random.mp3";
-        char* args[] = {"mpg123", filename, NULL};
+        char* args[] = {"mpg123", "-q",  filename, NULL};
         execvp("mpg123", args);
     }    
     
-
 }
 
 char * random_song(char** songs) {
 
-    int size = len(songs);
+    int size = sizeof(songs) / sizeof(songs[0]);
     int n =  (rand_int() % size ) ;
 
     return songs[n];
