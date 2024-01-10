@@ -30,15 +30,15 @@
 | Amber   | Create a leaderboard for players that sorts every time                           | 40         |
 | Shaurya | Start using different library SDL2 and try to get it working to play audio files | 30         |
 
-### 2024-01-09 - Brief description
+### 2024-01-09 - Almost there in branches
 
-| Person  | Logs                                                     | Time (min) |
-| ------- | -------------------------------------------------------- | ---------- |
-| Anthony | Use player structs and ask for player names              | 15         |
-|         | Display messages to everyone (bug: duplicates name)      | 15         |
-| Amber   | Create an update score function, restructure player list | 30         |
-|    | Working game without multiple players or actual songs (with point awarding) | 30         |
-| Shaurya | log                                                      | 0          |
+| Person  | Logs                                                                        | Time (min) |
+| ------- | --------------------------------------------------------------------------- | ---------- |
+| Anthony | Use player structs and ask for player names                                 | 15         |
+|         | Display messages to everyone                                                | 25         |
+| Amber   | Create an update score function, restructure player list                    | 30         |
+|         | Working game without multiple players or actual songs (with point awarding) | 30         |
+| Shaurya | log                                                                         | 0          |
 
 ### 2024-01-04 - Brief description
 
