@@ -32,7 +32,7 @@ void leaderboard(struct player *playerlist, int n) {
     //sort the players by score
     for(int i=0;i<n-1;i++) {
         for(int j=i+1;j<n;j++) {
-            if(playerlist[i].points > playerlist[j].points) { //compare thru the index
+            if(playerlist[i].points < playerlist[j].points) { //compare thru the index
                 struct player temp=playerlist[i];    //and swap only the indices
                 playerlist[i] = playerlist[j];
                 playerlist[j] = temp;
@@ -51,18 +51,13 @@ int awardPoints(struct player *playerlist,int n,int playerid,char* guess, char* 
     if (checkAnswer(guess,ans)==0) {
       for (int i = 0;i<n;i++) {
           if (playerlist[i].id==playerid) { //player whos score u want to update
-            printf("That is correct! Awarding 5 points to player %s",playerlist[i].name);
+            printf("That is correct! Awarding 5 points to player %s\n",playerlist[i].name);
             playerlist[i].points +=5;
             printf("Changing %s's (id: %d) score (previous: %d) to %d\n",playerlist[i].name,playerid,playerlist[i].points-5,playerlist[i].points);
             return 1;
           }
       }
-      leaderboard(playerlist,n);
-        // printf("That is correct! Awarding 5 points to player %s\n",p.name);
-        // updateScore(playerlist,n,playerid,)
-        // int prev = p.points;
-        // p.points = prev+5; //5 points for every correct guess
-
+      // leaderboard(playerlist,n);
     }
     return 0;
 }
@@ -84,19 +79,14 @@ void game(struct player *playerlist,int n) {
           int id = 1; //use id of player
           //reads guess of that player and checks them + displays leaderboard
           guessed = awardPoints(playerlist, n, id,read,song);
-          sleep(1); //[make the player with that id sleep] (client side after they send a message, not here)
+          // sleep(1); //[make the player with that id sleep] (client side after they send a message, not here)
         }
+        printf("\n");
+        leaderboard(playerlist,n);
+        printf("\n");
         //start new song
     }
 }
-// void updateScore(struct player *playerlist,int n, int playerid, int newscore) {
-//     for (int i = 0;i<n;i++) {
-//         if (playerlist[i].id==playerid) { //player whos score u want to update
-//             printf("Changing %s's (id: %d) score (previous: %d) to %d\n",playerlist[i].name,playerid,playerlist[i].points,newscore);
-//             playerlist[i].points = newscore;
-//         }
-//     }
-// }
 int main() {
     char string[256] ="Blank Space";
     char test[256] ="Test";
