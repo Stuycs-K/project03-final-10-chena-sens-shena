@@ -38,11 +38,15 @@
 |         | Display messages to everyone                                                | 25         |
 | Amber   | Create an update score function, restructure player list                    | 30         |
 |         | Working game without multiple players or actual songs (with point awarding) | 30         |
-| Shaurya | got playing mp3 files working  |  40         |
+| Shaurya | Get playing mp3 files to work                                               | 40         |
 
-### 2024-01-04 - Brief description
+### 2024-01-10 - Brief description
 
-Expanded description including how much time was spent on task.
+| Person  | Logs | Time (min) |
+| ------- | ---- | ---------- |
+| Anthony |      | 0          |
+| Amber   |      | 0          |
+| Shaurya |      | 0          |
 
 ### 2024-01-03 - Brief description
 
