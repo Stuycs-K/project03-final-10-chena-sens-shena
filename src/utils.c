@@ -24,7 +24,6 @@ void playSong(char *filename) {
         char* filename = "random.mp3";
         char* args[] = {"mpg123", filename, NULL};
         execvp("mpg123", args);
-        return 0;
     }    
     
 
