@@ -1,40 +1,53 @@
 #include "../include/networking.h"
+#include "../include/utils.h"
 
-void handle_new_client(int listen_socket, int *clients)
+void write_all(char *msg, int i, struct player *players)
 {
+    char buff[BUFFER_SIZE];
+    sprintf(buff, "%s: %s", players[i].name, msg);
+
+    for (int j = 0; j < MAX_PLAYERS; ++j)
+        if (i != j && players[j].id != 0)
+            write(players[j].id, buff, sizeof(buff));
+
+    printf("%s", buff);
+}
+
+void handle_new_client(int listen_socket, struct player *players)
+{
+    char name[NAME_SIZE];
+
     int client_socket = server_tcp_handshake(listen_socket);
     err(client_socket, "client accept error");
 
-    printf("Client %d joined\n", client_socket);
+    read(client_socket, name, sizeof(name));
+    printf("%s (%d) joined\n", name, client_socket);
 
-    for (int i = 0; i < MAX_CLIENTS; ++i)
-        if (clients[i] == 0)
+    for (int i = 0; i < MAX_PLAYERS; ++i)
+        if (players[i].id == 0)
         {
-            clients[i] = client_socket;
+            players[i].id = client_socket;
+            strcpy(players[i].name, name);
             break;
         }
 }
 
-void handle_client(fd_set read_fds, int *clients)
+void handle_client(fd_set read_fds, struct player *players)
 {
-    char buff[BUFFER_SIZE];
+    char msg[BUFFER_SIZE];
 
-    for (int i = 0; i < MAX_CLIENTS; ++i)
+    for (int i = 0; i < MAX_PLAYERS; ++i)
     {
-        int client_socket = clients[i];
+        int client_socket = players[i].id;
 
         if (FD_ISSET(client_socket, &read_fds))
         {
-            if (read(client_socket, buff, sizeof(buff)))
-            {
-                for (int j = 0; j < MAX_CLIENTS; ++j)
-                    if (i != j && clients[j] != 0)
-                        write(clients[j], buff, sizeof(buff));
-            }
+            if (read(client_socket, msg, sizeof(msg)))
+                write_all(msg, i, players);
             else
             {
                 close(client_socket);
-                clients[i] = 0;
+                players[i].id = 0;
             }
         }
     }
@@ -46,7 +59,7 @@ int main()
 
     fd_set read_fds;
 
-    int clients[MAX_CLIENTS];
+    struct player players[MAX_PLAYERS];
 
     while (1)
     {
@@ -55,9 +68,9 @@ int main()
 
         int max_socket = listen_socket;
 
-        for (int i = 0; i < MAX_CLIENTS; ++i)
+        for (int i = 0; i < MAX_PLAYERS; ++i)
         {
-            int client_socket = clients[i];
+            int client_socket = players[i].id;
 
             if (client_socket > 0)
                 FD_SET(client_socket, &read_fds);
@@ -69,9 +82,9 @@ int main()
         err(select(max_socket + 1, &read_fds, NULL, NULL, NULL), "select error");
 
         if (FD_ISSET(listen_socket, &read_fds))
-            handle_new_client(listen_socket, clients);
+            handle_new_client(listen_socket, players);
 
-        handle_client(read_fds, clients);
+        handle_client(read_fds, players);
     }
 
     return 0;

@@ -30,17 +30,23 @@
 | Amber   | Create a leaderboard for players that sorts every time                           | 40         |
 | Shaurya | Start using different library SDL2 and try to get it working to play audio files | 30         |
 
-### 2024-01-09 - Brief description
+### 2024-01-09 - Almost there in branches
+
+| Person  | Logs                                                                        | Time (min) |
+| ------- | --------------------------------------------------------------------------- | ---------- |
+| Anthony | Use player structs and ask for player names                                 | 15         |
+|         | Display messages to everyone                                                | 25         |
+| Amber   | Create an update score function, restructure player list                    | 30         |
+|         | Working game without multiple players or actual songs (with point awarding) | 30         |
+| Shaurya | Get playing mp3 files to work                                               | 40         |
+
+### 2024-01-10 - Brief description
 
 | Person  | Logs | Time (min) |
 | ------- | ---- | ---------- |
-| Anthony | log  | 0          |
-| Amber   | log  | 0          |
-| Shaurya | log  | 0          |
-
-### 2024-01-04 - Brief description
-
-Expanded description including how much time was spent on task.
+| Anthony |      | 0          |
+| Amber   |      | 0          |
+| Shaurya |      | 0          |
 
 ### 2024-01-03 - Brief description
 
