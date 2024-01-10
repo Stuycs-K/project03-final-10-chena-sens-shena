@@ -4,7 +4,7 @@
 void write_all(char *msg, int i, struct player *players)
 {
     char buff[BUFFER_SIZE];
-    sprintf(buff, "%s: %s", players[i].name, msg); // name duplicated here?
+    sprintf(buff, "%s: %s", players[i].name, msg);
 
     for (int j = 0; j < MAX_PLAYERS; ++j)
         if (i != j && players[j].id != 0)
@@ -34,7 +34,7 @@ void handle_new_client(int listen_socket, struct player *players)
 
 void handle_client(fd_set read_fds, struct player *players)
 {
-    char msg[BUFFER_SIZE - NAME_SIZE];
+    char msg[BUFFER_SIZE];
 
     for (int i = 0; i < MAX_PLAYERS; ++i)
     {

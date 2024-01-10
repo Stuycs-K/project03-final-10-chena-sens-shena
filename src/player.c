@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
     printf("Enter your name: ");
     fgets(name, sizeof(name), stdin);
     name[strlen(name) - 1] = '\0';
-    name[NAME_SIZE - 1] = '\0';
     write(server_socket, name, sizeof(name));
 
     char buff[BUFFER_SIZE];
