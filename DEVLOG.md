@@ -46,7 +46,8 @@
 | ------- | ------------------------------------------------------------ | ---------- |
 | Anthony | Add colorful prints and username displays                    | 40         |
 | Amber   | Work on debugging server disconnecting + client forever loop | 40         |
-| Shaurya | Work on music guessing game logic                            | 30         |
+| Shaurya | Add music to game logic                            | 30         |
+|         | Refactor game logic, add shuffling continuously new songs and logic to move on after guess    | 70 mins          |
 
 ### 2024-01-11 - Brief description
 
