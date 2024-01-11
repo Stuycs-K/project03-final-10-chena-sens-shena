@@ -46,7 +46,7 @@
 | ------- | ------------------- | ---------- |
 | Anthony | Add colorful prints | 25         |
 | Amber   |                     | 0          |
-| Shaurya |                     | 0          |
+| Shaurya | Work on music guessing game logic                    | 30 mins          |
 
 ### 2024-01-03 - Brief description
 
