@@ -42,11 +42,11 @@
 
 ### 2024-01-10 - Brief description
 
-| Person  | Logs | Time (min) |
-| ------- | ---- | ---------- |
-| Anthony |      | 0          |
-| Amber   |      | 0          |
-| Shaurya |      | 0          |
+| Person  | Logs                | Time (min) |
+| ------- | ------------------- | ---------- |
+| Anthony | Add colorful prints | 25         |
+| Amber   |                     | 0          |
+| Shaurya | Work on music guessing game logic                    | 30 mins          |
 
 ### 2024-01-03 - Brief description
 

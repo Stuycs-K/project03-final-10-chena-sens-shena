@@ -1,14 +1,20 @@
 #include "../include/networking.h"
 #include "../include/utils.h"
 
-void write_all(char *msg, int i, struct player *players)
+#define BOLD "\e[1m"
+#define RED "\e[31m"
+#define GREEN "\e[32m"
+#define YELLOW "\e[33m"
+#define CLEAR "\e[0m"
+
+void write_all(char *msg, int index, struct player *players)
 {
     char buff[BUFFER_SIZE];
-    sprintf(buff, "%s: %s", players[i].name, msg);
+    sprintf(buff, YELLOW "%s: " CLEAR "%s", players[index].name, msg);
 
-    for (int j = 0; j < MAX_PLAYERS; ++j)
-        if (i != j && players[j].id != 0)
-            write(players[j].id, buff, sizeof(buff));
+    for (int i = 0; i < MAX_PLAYERS; ++i)
+        if (index != i && players[i].id != 0)
+            write(players[i].id, buff, sizeof(buff));
 
     printf("%s", buff);
 }
@@ -21,7 +27,7 @@ void handle_new_client(int listen_socket, struct player *players)
     err(client_socket, "client accept error");
 
     read(client_socket, name, sizeof(name));
-    printf("%s (%d) joined\n", name, client_socket);
+    printf(GREEN BOLD ">>> %s joined <<<\n" CLEAR, name);
 
     for (int i = 0; i < MAX_PLAYERS; ++i)
         if (players[i].id == 0)
@@ -30,6 +36,14 @@ void handle_new_client(int listen_socket, struct player *players)
             strcpy(players[i].name, name);
             break;
         }
+}
+
+void disconnect(int client_socket, int index, struct player *players)
+{
+    printf(RED BOLD ">>> %s left <<<\n" CLEAR, players[index].name);
+
+    close(client_socket);
+    players[index].id = 0;
 }
 
 void handle_client(fd_set read_fds, struct player *players)
@@ -45,10 +59,7 @@ void handle_client(fd_set read_fds, struct player *players)
             if (read(client_socket, msg, sizeof(msg)))
                 write_all(msg, i, players);
             else
-            {
-                close(client_socket);
-                players[i].id = 0;
-            }
+                disconnect(client_socket, i, players);
         }
     }
 }
