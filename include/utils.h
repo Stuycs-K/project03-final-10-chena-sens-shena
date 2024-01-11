@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#define NAME_SIZE 15
+#define NAME_SIZE 150
 struct player
 {
   int id;

@@ -65,8 +65,8 @@ int awardPoints(struct player *playerlist,int n,int playerid,char* guess, char* 
 
 void game() {  
     struct song songs[] = {
-        {"Cooler Than Me", "assets/cooler.mp3"},
-        {"Replay", "assets/replay.mp3"}
+        {"Cooler Than Me", "assets/c.mp3"},
+        {"Replay", "assets/r.mp3"}
     };
     int total_songs = sizeof(songs) / sizeof(songs[0]);
 
@@ -79,7 +79,9 @@ void game() {
 
         // pick random song and add song to played songs
         struct song cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
-        play_song(cur_song.file_name);
+        printf("Song Name: %s\n", cur_song.name);
+        printf("File Name: %s\n", cur_song.file_name);
+        play_song(cur_song.file_name); // MOVE TO SERVER
         played_songs[total_played_songs] = cur_song.name;
         total_played_songs++;
 

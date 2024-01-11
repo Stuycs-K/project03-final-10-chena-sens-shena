@@ -43,19 +43,10 @@ int song_used(const char* songName, const struct song* played_songs, int total_p
 
 struct song random_song(struct song* songs, int total_songs, struct song* played_songs, int total_played_songs) {
    int n =  (rand_int() % total_songs );
-
-
    // if the song is used keep rerolling
    while (song_used(songs[n].name, played_songs, total_played_songs)) {
-
-
        n = rand_int() % total_songs;
    }
-
-
-
-
    return songs[n];
-
 
 }
