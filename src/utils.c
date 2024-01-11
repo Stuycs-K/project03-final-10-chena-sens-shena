@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/fcntl.h>
 #include "../include/utils.h"
+#include <string.h>
 
 
 
@@ -29,6 +30,16 @@ void play_song(char *filename) {
     }    
     
 }
+
+int song_used(const char* songName, const struct song* played_songs, int total_played_songs) {
+    for (int i = 0; i < total_played_songs; i++) {
+        if (strcmp(songName, played_songs[i].name) == 0) {
+            return 1; 
+        }
+    }
+    return 0; 
+}
+    
 
 char * random_song(char** songs, int size) {
     int n =  (rand_int() % size ) ;
