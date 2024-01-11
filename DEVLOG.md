@@ -40,14 +40,18 @@
 |         | Working game without multiple players or actual songs (with point awarding) | 30         |
 | Shaurya | Get playing mp3 files to work                                               | 40         |
 
-### 2024-01-10 - Brief description
+### 2024-01-10 - Tidying up
 
-| Person  | Logs                | Time (min) |
-| ------- | ------------------- | ---------- |
-| Anthony | Add colorful prints | 25         |
-| Amber   | Work on debugging server disconnecting + client forever loop                    | 40          |
-| Shaurya | Work on music guessing game logic                    | 30 mins          |
+| Person  | Logs                                                         | Time (min) |
+| ------- | ------------------------------------------------------------ | ---------- |
+| Anthony | Add colorful prints and username displays                    | 40         |
+| Amber   | Work on debugging server disconnecting + client forever loop | 40         |
+| Shaurya | Work on music guessing game logic                            | 30         |
 
-### 2024-01-03 - Brief description
+### 2024-01-11 - Brief description
 
-Expanded description including how much time was spent on task.
+| Person  | Logs | Time (min) |
+| ------- | ---- | ---------- |
+| Anthony | a    | 0          |
+| Amber   | b    | 0          |
+| Shaurya | c    | 0          |

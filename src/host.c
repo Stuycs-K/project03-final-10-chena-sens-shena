@@ -6,14 +6,17 @@
 #define GREEN "\e[32m"
 #define YELLOW "\e[33m"
 #define CLEAR "\e[0m"
+#define ERASE "\e[A\e[K"
 
 void write_all(char *msg, int index, struct player *players)
 {
     char buff[BUFFER_SIZE];
     sprintf(buff, YELLOW "%s: " CLEAR "%s", players[index].name, msg);
 
+    write(players[index].id, ERASE, strlen(ERASE));
+
     for (int i = 0; i < MAX_PLAYERS; ++i)
-        if (index != i && players[i].id != 0)
+        if (players[i].id != 0)
             write(players[i].id, buff, sizeof(buff));
 
     printf("%s", buff);
