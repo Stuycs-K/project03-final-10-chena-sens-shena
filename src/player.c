@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     char buff[BUFFER_SIZE];
     fd_set read_fds;
 
-    while (1)
+    while (server_socket>=0)
     {
         FD_ZERO(&read_fds);
 
