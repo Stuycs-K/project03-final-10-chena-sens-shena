@@ -45,7 +45,7 @@
 | Person  | Logs                | Time (min) |
 | ------- | ------------------- | ---------- |
 | Anthony | Add colorful prints | 25         |
-| Amber   |                     | 0          |
+| Amber   | Work on debugging server disconnecting + client forever loop                    | 40          |
 | Shaurya | Work on music guessing game logic                    | 30 mins          |
 
 ### 2024-01-03 - Brief description
