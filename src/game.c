@@ -62,6 +62,7 @@ int awardPoints(struct player *playerlist,int n,int playerid,char* guess, char* 
     return 0;
 }
 
+
 void game() {  
     struct song songs[] = {
         {"Cooler Than Me", "assets/cooler.mp3"},
@@ -69,18 +70,17 @@ void game() {
     };
     int total_songs = sizeof(songs) / sizeof(songs[0]);
 
-    struct song* played_songs = malloc(total_songs * sizeof(struct song));
+    char** played_songs = malloc(total_songs * sizeof(struct song));
     int total_played_songs = 0;
 
-    
 
     // game loop
     while(total_played_songs < total_songs) {
 
         // pick random song and add song to played songs
-        char* song = random_song(songs, total_songs);
-        play_song(song);
-        played_songs[total_played_songs] = song;
+        struct song cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
+        play_song(cur_song.file_name);
+        played_songs[total_played_songs] = cur_song.name;
         total_played_songs++;
 
         // prompt user for input
@@ -92,7 +92,7 @@ void game() {
     
         int guessed = 0;
         while (!guessed) {
-            if (checkAnswer(read, song) ) {
+            if (checkAnswer(read, cur_song.name) ) {
                 printf("correct answer!");
                 guessed = 1;
             } else { 
