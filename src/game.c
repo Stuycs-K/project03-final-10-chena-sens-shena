@@ -81,24 +81,26 @@ void game() {
         struct song cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
         printf("Song Name: %s\n", cur_song.name);
         printf("File Name: %s\n", cur_song.file_name);
-        play_song(cur_song.file_name); // MOVE TO SERVER
+        // play_song(cur_song.file_name); // MOVE TO SERVER
         played_songs[total_played_songs] = cur_song.name;
         total_played_songs++;
 
-        // prompt user for input
-        char read[1024];
-        printf("Enter your guess: ");
-        fgets(read, 1024, stdin);
+        
 
         // TODO: get player id and award points to specific player
     
         int guessed = 0;
         while (!guessed) {
+            // prompt user for input
+            char read[1024];
+            printf("Enter your guess: ");
+            fgets(read, 1024, stdin);
+
             if (checkAnswer(read, cur_song.name) ) {
-                printf("correct answer!");
+                printf("correct answer!\n");
                 guessed = 1;
             } else { 
-                printf("wrong answr keep trying :(");
+                printf("wrong answr keep trying :(\n");
             }
         }
     }
