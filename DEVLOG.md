@@ -48,10 +48,10 @@
 | Amber   | Work on debugging server disconnecting + client forever loop | 40         |
 | Shaurya | Work on music guessing game logic                            | 30         |
 
-### 2024-01-11 - Brief description
+### 2024-01-11 - Fix bugs
 
-| Person  | Logs | Time (min) |
-| ------- | ---- | ---------- |
-| Anthony | a    | 0          |
-| Amber   | b    | 0          |
-| Shaurya | c    | 0          |
+| Person  | Logs                                             | Time (min) |
+| ------- | ------------------------------------------------ | ---------- |
+| Anthony | Fix infinite client spam when server disconnects | 5          |
+| Amber   | b                                                | 0          |
+| Shaurya | c                                                | 0          |
