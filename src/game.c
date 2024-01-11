@@ -89,8 +89,8 @@ void game()
 
         // pick random song and add song to played songs
         struct song cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
-        printf("Song Name: %s\n", cur_song.name);
-        printf("File Name: %s\n", cur_song.file_name);
+        printf("Song Name (FOR TESTING): %s\n", cur_song.name);
+        
         // play_song(cur_song.file_name); // MOVE TO SERVER
         played_songs[total_played_songs] = cur_song;
         total_played_songs++;
@@ -113,7 +113,12 @@ void game()
             }
             // keep reading from next player's guess
         }
+
+        
+
     }
+    
+    printf("All Songs Completed!\n");
 }
 
 int main()
