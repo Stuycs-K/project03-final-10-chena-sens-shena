@@ -12,11 +12,11 @@ struct player
 struct song
 {
   char name[NAME_SIZE];
-  char artist[NAME_SIZE];
-  char file[NAME_SIZE]; //mp3 file name 
+  char file_name[NAME_SIZE]; //mp3 file name 
 };
-void playMP3(const char *filename);
+char * random_song(char** songs, int size) ;
 
-char *random_song(char **songs);
+void play_song(char *filename) ;
+
 
 #endif
