@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/fcntl.h>
+#include "../include/utils.h"
+
 
 
 
@@ -17,7 +19,7 @@ int rand_int() {
 
 }
 
-void playSong(char *filename) {
+void play_song(char *filename) {
 
     int p = fork();
 
@@ -28,11 +30,7 @@ void playSong(char *filename) {
     
 }
 
-char * random_song(char** songs) {
-
-    int size = sizeof(songs) / sizeof(songs[0]);
+char * random_song(char** songs, int size) {
     int n =  (rand_int() % size ) ;
-
     return songs[n];
-
 }

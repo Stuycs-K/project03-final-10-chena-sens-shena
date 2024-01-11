@@ -3,7 +3,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
-#include "utils.c"
 
 #include "../include/utils.h"
 //Get user input for guess, with 1s cooldown between guesses (no server)'''
@@ -64,14 +63,14 @@ int awardPoints(struct player *playerlist,int n,int playerid,char* guess, char* 
 }
 void game(struct player *playerlist,int n) {
 
-    char* songs = { "assets/cooler.mp3", "assets/replay.mp3"};
+    char* songs[] = { "assets/cooler.mp3", "assets/replay.mp3"};
     char read[1024];
     while (1) { //keep  playing songs
 
-        // char* song = random_song(songs);
-        // playSong(song);
-        char* song = "assets/cooler.mp3";
-        playSong(songs);
+        int size = sizeof(songs) / sizeof(songs[0]);
+
+        char* song = random_song(songs, size);
+        play_song(song);
         // REMOVE SONGS
 
         //keep askign for input, 1s delay b/t guesses
