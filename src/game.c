@@ -5,111 +5,119 @@
 #include <ctype.h>
 
 #include "../include/utils.h"
-//Get user input for guess, with 1s cooldown between guesses (no server)'''
-//guesses are lowercase: add this note to directiosn in the beginning later
+// Get user input for guess, with 1s cooldown between guesses (no server)'''
+// guesses are lowercase: add this note to directiosn in the beginning later
 
-void userInput(char* returnString) {
+void userInput(char *returnString)
+{
     char line[1024];
     printf("Guess: ");
     fflush(stdout);
     fflush(stdin);
-    fgets(line,sizeof(line),stdin);
-    strcpy(returnString,line);
-    printf("Read: %s\n",returnString);
+    fgets(line, sizeof(line), stdin);
+    strcpy(returnString, line);
+    printf("Read: %s\n", returnString);
 }
-void convertLower(char* string) {
-    for (int i = 0;string[i];i++) {
+void convertLower(char *string)
+{
+    for (int i = 0; string[i]; i++)
+    {
         string[i] = tolower(string[i]);
     }
 }
-int checkAnswer(char* guess, char* ans) {
-    convertLower(ans); //convert song title to all lowercase
-    guess[strcspn(guess, "\n")] = 0; //remove the newline from the end of the guess when they press enter
-    int answer = strcmp(guess,ans);  //same
+int checkAnswer(char *guess, char *ans)
+{
+    convertLower(ans);               // convert song title to all lowercase
+    guess[strcspn(guess, "\n")] = 0; // remove the newline from the end of the guess when they press enter
+    int answer = strcmp(guess, ans); // same
     return answer;
 }
-void leaderboard(struct player *playerlist, int n) {
-    //sort the players by score
-    for(int i=0;i<n-1;i++) {
-        for(int j=i+1;j<n;j++) {
-            if(playerlist[i].points < playerlist[j].points) { //compare thru the index
-                struct player temp=playerlist[i];    //and swap only the indices
+void leaderboard(struct player *playerlist, int n)
+{
+    // sort the players by score
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (playerlist[i].points < playerlist[j].points)
+            {                                       // compare thru the index
+                struct player temp = playerlist[i]; // and swap only the indices
                 playerlist[i] = playerlist[j];
                 playerlist[j] = temp;
             }
         }
     }
     printf("LEADERBOARD: \n");
-    for (int i = 0;i<n;i++) {
-        printf("%d. %s (id: %d): %d\n",i+1,playerlist[i].name,playerlist[i].id,playerlist[i].points);
-
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d. %s (id: %d): %d\n", i + 1, playerlist[i].name, playerlist[i].id, playerlist[i].points);
     }
-    //2 players, change later
-
+    // 2 players, change later
 }
-int awardPoints(struct player *playerlist,int n,int playerid,char* guess, char* ans) { //player array, specific player index in array
-    if (checkAnswer(guess,ans)==0) {
-      for (int i = 0;i<n;i++) {
-          if (playerlist[i].id==playerid) { //player whos score u want to update
-            printf("That is correct! Awarding 5 points to player %s\n", playerlist[i].name);
-            playerlist[i].points +=5;
-            printf("Changing %s's (id: %d) score (previous: %d) to %d\n", playerlist[i].name,playerid,playerlist[i].points-5,playerlist[i].points);
-            return 1;
-          }
-      }
-      // leaderboard(playerlist,n);
+int awardPoints(struct player *playerlist, int n, int playerid, char *guess, char *ans)
+{ // player array, specific player index in array
+    if (checkAnswer(guess, ans) == 0)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            if (playerlist[i].id == playerid)
+            { // player whos score u want to update
+                printf("That is correct! Awarding 5 points to player %s\n", playerlist[i].name);
+                playerlist[i].points += 5;
+                printf("Changing %s's (id: %d) score (previous: %d) to %d\n", playerlist[i].name, playerid, playerlist[i].points - 5, playerlist[i].points);
+                return 1;
+            }
+        }
+        // leaderboard(playerlist,n);
     }
     return 0;
 }
 
-
-void game() {  
+void game()
+{
     struct song songs[] = {
         {"Cooler Than Me", "assets/c.mp3"},
-        {"Replay", "assets/r.mp3"}
-    };
+        {"Replay", "assets/r.mp3"}};
     int total_songs = sizeof(songs) / sizeof(songs[0]);
 
-    char** played_songs = malloc(total_songs * sizeof(struct song));
+    struct song *played_songs = malloc(total_songs * sizeof(struct song));
     int total_played_songs = 0;
 
-
     // game loop
-    while(total_played_songs < total_songs) {
+    while (total_played_songs < total_songs)
+    {
 
         // pick random song and add song to played songs
         struct song cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
         printf("Song Name: %s\n", cur_song.name);
         printf("File Name: %s\n", cur_song.file_name);
         // play_song(cur_song.file_name); // MOVE TO SERVER
-        played_songs[total_played_songs] = cur_song.name;
+        played_songs[total_played_songs] = cur_song;
         total_played_songs++;
 
-        
+        // prompt user for input
+        char read[1024];
 
         // TODO: get player id and award points to specific player
-    
+
         int guessed = 0;
-        while (!guessed) {
-            // prompt user for input
-            char read[1024];
+        while (!guessed)
+        {
             printf("Enter your guess: ");
             fgets(read, 1024, stdin);
 
-            if (checkAnswer(read, cur_song.name) ) {
+            if (checkAnswer(read, cur_song.name) == 0)
+            {
                 printf("correct answer!\n");
                 guessed = 1;
-            } else { 
-                printf("wrong answr keep trying :(\n");
             }
+            // keep reading from next player's guess
         }
     }
 }
 
- 
-
-int main() {
-
+int main()
+{
 
     // char string[256] ="Blank Space";
     // char test[256] ="Test";

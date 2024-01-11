@@ -1,13 +1,6 @@
 #include "../include/networking.h"
 #include "../include/utils.h"
 
-#define BOLD "\e[1m"
-#define RED "\e[31m"
-#define GREEN "\e[32m"
-#define YELLOW "\e[33m"
-#define CLEAR "\e[0m"
-#define ERASE "\e[A\e[K"
-
 void write_all(char *msg, int index, struct player *players)
 {
     char buff[BUFFER_SIZE];

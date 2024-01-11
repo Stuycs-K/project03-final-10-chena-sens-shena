@@ -49,10 +49,10 @@
 | Shaurya | Add music to game logic                            | 30         |
 |         | Refactor game logic, add shuffling continuously new songs and logic to move on after guess    | 70 mins          |
 
-### 2024-01-11 - Brief description
+### 2024-01-11 - Fix bugs
 
-| Person  | Logs | Time (min) |
-| ------- | ---- | ---------- |
-| Anthony | a    | 0          |
-| Amber   | b    | 0          |
-| Shaurya | c    | 0          |
+| Person  | Logs                                             | Time (min) |
+| ------- | ------------------------------------------------ | ---------- |
+| Anthony | Fix infinite client spam when server disconnects | 5          |
+| Amber   | b                                                | 0          |
+| Shaurya | c                                                | 0          |

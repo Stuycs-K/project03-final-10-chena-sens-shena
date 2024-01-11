@@ -32,8 +32,14 @@ int main(int argc, char *argv[])
 
         if (FD_ISSET(server_socket, &read_fds))
         {
-            read(server_socket, buff, sizeof(buff));
-            printf("%s", buff);
+            if (read(server_socket, buff, sizeof(buff)))
+                printf("%s", buff);
+            else
+            {
+                printf(RED BOLD ">>> Server disconnected <<<\n" CLEAR);
+                close(server_socket);
+                break;
+            }
         }
         if (FD_ISSET(STDIN_FILENO, &read_fds))
         {
