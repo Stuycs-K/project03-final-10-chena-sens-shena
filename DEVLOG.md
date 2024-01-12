@@ -54,5 +54,5 @@
 | Person  | Logs                                             | Time (min) |
 | ------- | ------------------------------------------------ | ---------- |
 | Anthony | Fix infinite client spam when server disconnects | 5          |
-| Amber   | b                                                | 0          |
+| Amber   | implement leaderboard/points with song guessing                                                | 15          |
 | Shaurya | fix shuffling not working and infinite wrong guessing bugs            | 40          |
