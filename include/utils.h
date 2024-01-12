@@ -25,6 +25,10 @@ struct song random_song(struct song* songs, int total_songs, struct song* played
 int song_used(const char* songName, const struct song* played_songs, int total_played_songs);
 
 void play_song(char *filename) ;
-
+int awardPoints(struct player *playerlist, int n, int playerid, char *guess, char *ans);
+void leaderboard(struct player *playerlist, int n);
+int checkAnswer(char *guess, char *ans);
+void convertLower(char *string);
+void userInput(char *returnString);
 
 #endif

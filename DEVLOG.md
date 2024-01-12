@@ -58,10 +58,10 @@
 | Amber   | Implement leaderboard/points with song guessing            | 15         |
 | Shaurya | Fix shuffling not working and infinite wrong guessing bugs | 40         |
 
-### 2024-01-12 - Brief description
+### 2024-01-12 - Begin merging
 
-| Person  | Logs | Time (min) |
-| ------- | ---- | ---------- |
-| Anthony | a    | 0          |
-| Amber   | b    | 0          |
-| Shaurya | c    | 0          |
+| Person  | Logs                                                   | Time (min) |
+| ------- | ------------------------------------------------------ | ---------- |
+| Anthony | Think about how to organize and merge game into server | 40         |
+| Amber   | Think about how to organize and merge game into server | 40         |
+| Shaurya | Think about how to organize and merge game into server | 40         |
