@@ -73,7 +73,7 @@ int awardPoints(struct player *playerlist, int n, int playerid, char *guess, cha
     return 0;
 }
 
-void game()
+void game(struct player *playerlist,int n)
 {
     struct song songs[] = {
         {"Cooler Than Me", "assets/c.mp3"},
@@ -95,26 +95,26 @@ void game()
         played_songs[total_played_songs] = cur_song;
         total_played_songs++;
 
-        // prompt user for input
         char read[1024];
 
-        // TODO: get player id and award points to specific player
+        // TODO: get player id
 
         int guessed = 0;
-        while (!guessed)
-        {
-            printf("Enter your guess: ");
-            fgets(read, 1024, stdin);
+        while (guessed==0)
+        { 
+            //prompt players for guess, read the first player 
+            userInput(read);
 
-            if (checkAnswer(read, cur_song.name) == 0)
-            {
-                printf("correct answer!\n");
-                guessed = 1;
-            }
-            // keep reading from next player's guess
+            //id of first player to respond
+            int id = 1; //placeholder id right now 
+
+            guessed = awardPoints(playerlist,n,id,read,cur_song.name);
+
+            // keep reading from next player's guess if that guess wasn't correct
         }
-
-        
+        printf("\n");
+        leaderboard(playerlist,n);
+        printf("\n");       
 
     }
     
@@ -124,36 +124,36 @@ void game()
 int main()
 {
 
-    // char string[256] ="Blank Space";
-    // char test[256] ="Test";
-    // struct player playerlist[2];
-    // struct player t;
-    // strcpy(t.name,"Amber");
-    // t.id = 1; //random number chosen
-    // t.points = 20;
-    // playerlist[0] = t;
-    // struct player t1;
-    // strcpy(t1.name,"Anthony");
-    // t1.id = 2; //random number chosen
-    // t1.points = 15;
-    // playerlist[1] = t1;
+    char string[256] ="Blank Space";
+    char test[256] ="Test";
+    struct player playerlist[2];
+    struct player t;
+    strcpy(t.name,"Amber");
+    t.id = 1; //random number chosen
+    t.points = 20;
+    playerlist[0] = t;
+    struct player t1;
+    strcpy(t1.name,"Anthony");
+    t1.id = 2; //random number chosen
+    t1.points = 15;
+    playerlist[1] = t1;
 
-    // struct player t2;
-    // strcpy(t2.name,"Shaurya");
-    // t2.id = 3; //random number chosen
-    // t2.points = 5;
-    // playerlist[2] = t2;
+    struct player t2;
+    strcpy(t2.name,"Shaurya");
+    t2.id = 3; //random number chosen
+    t2.points = 5;
+    playerlist[2] = t2;
     // leaderboard(playerlist,3);
-    // // updateScore(playerlist,3,3,50);
+    // updateScore(playerlist,3,3,50);
 
-    // struct player t3;
-    // strcpy(t3.name,"Carmin");
-    // t3.id = 3; //random number chosen
-    // t3.points = 14;
-    // playerlist[3] = t3;
-    // game(playerlist,4);
+    struct player t3;
+    strcpy(t3.name,"Carmin");
+    t3.id = 3; //random number chosen
+    t3.points = 14;
+    playerlist[3] = t3;
+
+    game(playerlist,4);
     // strcpy()
     // loop(t);
 
-    game();
 }
