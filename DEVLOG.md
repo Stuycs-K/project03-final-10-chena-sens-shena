@@ -40,14 +40,19 @@
 |         | Working game without multiple players or actual songs (with point awarding) | 30         |
 | Shaurya | Get playing mp3 files to work                                               | 40         |
 
-### 2024-01-10 - Brief description
+### 2024-01-10 - Tidying up
 
-| Person  | Logs | Time (min) |
-| ------- | ---- | ---------- |
-| Anthony |      | 0          |
-| Amber   |      | 0          |
-| Shaurya |      | 0          |
+| Person  | Logs                                                         | Time (min) |
+| ------- | ------------------------------------------------------------ | ---------- |
+| Anthony | Add colorful prints and username displays                    | 40         |
+| Amber   | Work on debugging server disconnecting + client forever loop | 40         |
+| Shaurya | Add music to game logic                            | 30         |
+|         | Refactor game logic, add shuffling continuously new songs and logic to move on after guess    | 70 mins          |
 
-### 2024-01-03 - Brief description
+### 2024-01-11 - Fix bugs
 
-Expanded description including how much time was spent on task.
+| Person  | Logs                                             | Time (min) |
+| ------- | ------------------------------------------------ | ---------- |
+| Anthony | Fix infinite client spam when server disconnects | 5          |
+| Amber   | b                                                | 0          |
+| Shaurya | fix shuffling not working and infinite wrong guessing bugs            | 40          |
