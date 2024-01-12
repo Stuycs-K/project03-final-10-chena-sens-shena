@@ -67,10 +67,6 @@ int main()
 
     fd_set read_fds;
 
-    // struct sigaction act;
-    // act.sa_handler = sighandler;
-    // act.sa_flags = SA_RESTART;
-
     struct player players[MAX_PLAYERS];
 
     while (1)
@@ -97,12 +93,7 @@ int main()
             handle_new_client(listen_socket, players);
 
         handle_client(read_fds, players);
-        
-        // sigaction(SIGINT, &act, NULL);
-        // printf("server socket in loop: %d\n",listen_socket);
     }
-        // sigaction(SIGINT, &act, NULL);
-        // printf("server socket: %d\n",listen_socket);
 
     return 0;
 }

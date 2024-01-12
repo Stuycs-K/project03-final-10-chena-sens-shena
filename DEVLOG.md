@@ -42,17 +42,26 @@
 
 ### 2024-01-10 - Tidying up
 
-| Person  | Logs                                                         | Time (min) |
-| ------- | ------------------------------------------------------------ | ---------- |
-| Anthony | Add colorful prints and username displays                    | 40         |
-| Amber   | Work on debugging server disconnecting + client forever loop | 40         |
-| Shaurya | Add music to game logic                            | 30         |
-|         | Refactor game logic, add shuffling continuously new songs and logic to move on after guess    | 70 mins          |
+| Person  | Logs                                                                                       | Time (min) |
+| ------- | ------------------------------------------------------------------------------------------ | ---------- |
+| Anthony | Add colorful prints and username displays                                                  | 40         |
+| Amber   | Work on debugging server disconnecting + client forever loop                               | 40         |
+| Shaurya | Add music to game logic                                                                    | 30         |
+|         | Refactor game logic, add shuffling continuously new songs and logic to move on after guess | 70         |
 
 ### 2024-01-11 - Fix bugs
 
-| Person  | Logs                                             | Time (min) |
-| ------- | ------------------------------------------------ | ---------- |
-| Anthony | Fix infinite client spam when server disconnects | 5          |
-| Amber   | implement leaderboard/points with song guessing                                                | 15          |
-| Shaurya | fix shuffling not working and infinite wrong guessing bugs            | 40          |
+| Person  | Logs                                                       | Time (min) |
+| ------- | ---------------------------------------------------------- | ---------- |
+| Anthony | Fix infinite client spam when server disconnects           | 5          |
+|         | Understand game.c in preparation to merge                  | 10         |
+| Amber   | Implement leaderboard/points with song guessing            | 15         |
+| Shaurya | Fix shuffling not working and infinite wrong guessing bugs | 40         |
+
+### 2024-01-12 - Brief description
+
+| Person  | Logs | Time (min) |
+| ------- | ---- | ---------- |
+| Anthony | a    | 0          |
+| Amber   | b    | 0          |
+| Shaurya | c    | 0          |
