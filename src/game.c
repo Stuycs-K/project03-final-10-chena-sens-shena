@@ -73,17 +73,11 @@ int awardPoints(struct player *playerlist, int n, int playerid, char *guess, cha
     return 0;
 }
 
-int guessing(struct player *players, char *song_name)
-{
-    userInput(read);
-    int id = 1; // placeholder id right now
-    guessed = awardPoints(players, n, id, read, song_name);
-    return guessed;
-}
+int guessing(struct player *players, char *song_name){  }
 
-// void initialize_game(struct player *players ) {
+void initialize_game(struct player *players ) {  }
 
-// }
+void play_random_song() {  }
 
 void game(struct player *playerlist, int n)
 {
