@@ -3,12 +3,14 @@
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
-
+#include "../include/music.h"
+#include "../include/game.h"
 #include "../include/utils.h"
+
+
 // Get user input for guess, with 1s cooldown between guesses (no server)'''
 // guesses are lowercase: add this note to directiosn in the beginning later
-
-void userInput(char *returnString)
+void user_input(char *returnString)
 {
     char line[1024];
     printf("Guess: ");
@@ -18,20 +20,23 @@ void userInput(char *returnString)
     strcpy(returnString, line);
     printf("Read: %s\n", returnString);
 }
-void convertLower(char *string)
+
+void convert_lower(char *string)
 {
     for (int i = 0; string[i]; i++)
     {
         string[i] = tolower(string[i]);
     }
 }
-int checkAnswer(char *guess, char *ans)
+
+int check_answer(char *guess, char *ans)
 {
-    convertLower(ans);               // convert song title to all lowercase
-    guess[strcspn(guess, "\n")] = 0; // remove the newline from the end of the guess when they press enter
-    int answer = strcmp(guess, ans); // same
+    convert_lower(ans);               // convert song title to all lowercase
+    guess[strcspn(guess, "\n")] = 0;  // remove the newline from the end of the guess when they press enter
+    int answer = strcmp(guess, ans);  // same
     return answer;
 }
+
 void leaderboard(struct player *playerlist, int n)
 {
     // sort the players by score
@@ -45,7 +50,7 @@ void leaderboard(struct player *playerlist, int n)
                 playerlist[i] = playerlist[j];
                 playerlist[j] = temp;
             }
-        }
+        } 
     }
     printf("LEADERBOARD: \n");
     for (int i = 0; i < n; i++)
@@ -54,9 +59,10 @@ void leaderboard(struct player *playerlist, int n)
     }
     // 2 players, change later
 }
-int awardPoints(struct player *playerlist, int n, int playerid, char *guess, char *ans)
+
+int award_point(struct player *playerlist, int n, int playerid, char *guess, char *ans)
 { // player array, specific player index in array
-    if (checkAnswer(guess, ans) == 0)
+    if (check_answer(guess, ans) == 0)
     {
         for (int i = 0; i < n; i++)
         {
@@ -73,11 +79,11 @@ int awardPoints(struct player *playerlist, int n, int playerid, char *guess, cha
     return 0;
 }
 
-int guessing(struct player *players, char *song_name){  }
+int guessing(struct player *players, char *song_name);
 
-void initialize_game(struct player *players ) {  }
+void initialize_game(struct player *players );
 
-void play_random_song() {  }
+void play_random_song();
 
 void game(struct player *playerlist, int n)
 {
@@ -115,12 +121,12 @@ void game(struct player *playerlist, int n)
             // guessing {
             guessed = guessing(playerlist, cur_song.name);
             // prompt players for guess, read the first player
-            userInput(read);
+            user_input(read);
 
             // id of first player to respond
             int id = 1; // placeholder id right now
 
-            guessed = awardPoints(playerlist, n, id, read, cur_song.name);
+            guessed = award_point(playerlist, n, id, read, cur_song.name);
             //}
 
             // keep reading from next player's guess if that guess wasn't correct
@@ -143,9 +149,7 @@ int sizeofArray(struct player *players)
     }
     return n;
 }
-int main()
-{
-
+int main() {
     char string[256] = "Blank Space";
     char test[256] = "Test";
     struct player playerlist[2];
