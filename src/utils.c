@@ -4,6 +4,10 @@
 #include <ctype.h>
 #include <sys/fcntl.h>
 #include "../include/utils.h"
+#include "../include/game.h"
+
+#include "../include/music.h"
+
 #include <string.h>
 
 

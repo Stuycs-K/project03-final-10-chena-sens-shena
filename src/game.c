@@ -79,11 +79,11 @@ int award_point(struct player *playerlist, int n, int playerid, char *guess, cha
     return 0;
 }
 
-int guessing(struct player *players, char *song_name);
+// int guessing(struct player *players, char *song_name);
 
-void initialize_game(struct player *players );
+// void initialize_game(struct player *players );
 
-void play_random_song();
+// void play_random_song();
 
 void game(struct player *playerlist, int n)
 {
@@ -119,7 +119,7 @@ void game(struct player *playerlist, int n)
         while (guessed == 0)
         {
             // guessing {
-            guessed = guessing(playerlist, cur_song.name);
+            // guessed = guessing(playerlist, cur_song.name);
             // prompt players for guess, read the first player
             user_input(read);
 
