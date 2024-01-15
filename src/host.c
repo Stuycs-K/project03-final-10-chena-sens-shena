@@ -91,34 +91,44 @@ int main()
     struct song played_songs[total_songs];
     int total_played_songs = 0;
 
+    int song_pid = 0;
+
     struct timeval start_time, current_time;
     gettimeofday(&start_time, NULL);
 
-    while (1)
+    while (total_played_songs <= total_songs)
     {
         server_listen(listen_socket, read_fds, players); // blocks until something happens
 
         gettimeofday(&current_time, NULL);
-        double elapsed_time = difftime(start_time.tv_sec, current_time.tv_sec);
+        double elapsed_time = difftime(current_time.tv_sec, start_time.tv_sec);
 
         if (elapsed_time > ROUND_DURATION)
         {
-
             // game end things
             // show leaderboard
             // new song
+            if (total_played_songs == total_songs)
+                break;
+
             struct song cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
             printf("Song Name (FOR TESTING): %s\n", cur_song.name);
 
-            play_song(cur_song.file_name); // MOVE TO SERVER
+            // kill PID
+            if (song_pid != 0)
+                err(kill(song_pid, SIGKILL), "kill error");
+
+            song_pid = play_song(cur_song.file_name); // MOVE TO SERVER
             played_songs[total_played_songs] = cur_song;
             total_played_songs++;
 
-            // handle_client(read_fds, players);
             // reset start time
             gettimeofday(&start_time, NULL);
         }
     }
+
+    printf("Game Over\n");
+    err(kill(song_pid, SIGKILL), "kill error");
 
     return 0;
 }
