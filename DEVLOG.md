@@ -73,3 +73,11 @@
 | Anthony | Merge music into server | 150        |
 | Amber   | Merge music into server | 150        |
 | Shaurya | Merge music into server | 150        |
+
+## 2024-01-15 - Merge game
+
+| Person  | Logs                   | Time (min) |
+| ------- | ---------------------- | ---------- |
+| Anthony | Merge game into server | 0          |
+| Amber   | Merge game into server | 0          |
+| Shaurya | Merge game into server | 0          |
