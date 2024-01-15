@@ -9,13 +9,17 @@ int main(int argc, char *argv[])
         IP = argv[1];
 
     int server_socket = client_tcp_handshake(IP);
-    printf("Successfully connected to %s\n", IP);
 
+    init_ncurses();
     char name[NAME_SIZE];
 
-    printf("Enter your name: ");
-    fgets(name, sizeof(name), stdin);
-    name[strlen(name) - 1] = '\0';
+    attron(COLOR_PAIR('B'));
+    printw("Successfully connected to %s\n", IP);
+    printw("Enter your name: ");
+    attroff(COLOR_PAIR('B'));
+    scanw("%s", name);
+    refresh();
+
     write(server_socket, name, sizeof(name));
 
     char buff[BUFFER_SIZE];
@@ -33,17 +37,31 @@ int main(int argc, char *argv[])
         if (FD_ISSET(server_socket, &read_fds))
         {
             if (read(server_socket, buff, sizeof(buff)))
-                printf("%s", buff);
+            {
+                printw("%s", buff);
+                refresh();
+            }
             else
             {
-                printf(RED BOLD ">>> Server disconnected <<<\n" CLEAR);
+                attron(COLOR_PAIR('R'));
+                printw(">>> Server disconnected <<<\n");
+                attroff(COLOR_PAIR('R'));
+                refresh();
+
                 close(server_socket);
+
+                attron(COLOR_PAIR('B'));
+                printw("Press any key to exit...");
+                attroff(COLOR_PAIR('B'));
+                getch();
+
+                endwin();
                 break;
             }
         }
         if (FD_ISSET(STDIN_FILENO, &read_fds))
         {
-            fgets(buff, sizeof(buff), stdin);
+            scanw("%s", buff);
             write(server_socket, buff, sizeof(buff));
         }
     }
