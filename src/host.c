@@ -77,6 +77,12 @@ void server_listen(int listen_socket, fd_set read_fds, struct player *players, c
 
     handle_client(read_fds, players, song_name);
 }
+void print_playerlist(struct player *players) {
+    printf("PRINTING PLAYERLIST\n");
+    for (int i = 0;i<MAX_PLAYERS;i++) {
+        printf("players[%d].name: %s,id: %d,points: %d\n",i,players[i].name,players[i].id,players[i].points);
+    }
+}
 
 int main()
 {
@@ -108,6 +114,9 @@ int main()
 
         if (elapsed_time > ROUND_DURATION)
         {
+            // print_playerlist(players);
+            buff = malloc(sizeof(char) * BUFFER_SIZE);
+            // printf("LEADERBOARJDLSKF\n");
             leaderboard(players, buff);
             write_all(buff, 0, players);
 
