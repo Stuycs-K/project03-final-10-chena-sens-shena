@@ -92,8 +92,8 @@ int main()
     struct player players[MAX_PLAYERS];
 
     struct song songs[] = {
-        {"Cooler Than Me", "assets/c.mp3"},
-        {"Replay", "assets/r.mp3"}};
+        {"Cooler Than Me", "assets/coolerthanme.mp3"},
+        {"Replay", "assets/replay.mp3"}};
     int total_songs = sizeof(songs) / sizeof(songs[0]);
     struct song played_songs[total_songs];
     int total_played_songs = 0;

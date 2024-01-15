@@ -27,8 +27,7 @@ void write_all(char *msg, int index, struct player *players)
         sprintf(buff, YELLOW "%s: " CLEAR "%s", players[index].name, msg);
         write(players[index].id, ERASE, strlen(ERASE));
     }
-    else // host
-        sprintf(buff, YELLOW "%s: " CLEAR "%s", "Host", msg);
+   
 
     for (int i = 0; i < MAX_PLAYERS; ++i)
         if (players[i].id != 0)

@@ -21,7 +21,7 @@ utils.o: src/utils.c include/utils.h include/imports.h
 host:_host
 	@./host
 player: _player
-	@./player
+	@./player $(ARGS)
 
 clean:
 	@rm -f *.o game host player
