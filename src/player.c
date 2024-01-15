@@ -49,13 +49,8 @@ int main(int argc, char *argv[])
                 refresh();
 
                 close(server_socket);
+                end_ncurses();
 
-                attron(COLOR_PAIR('B'));
-                printw("Press any key to exit...");
-                attroff(COLOR_PAIR('B'));
-                getch();
-
-                endwin();
                 break;
             }
         }

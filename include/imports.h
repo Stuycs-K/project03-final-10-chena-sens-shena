@@ -22,14 +22,6 @@
 #define PORT "19230"
 #define BUFFER_SIZE 1024
 
-#define BOLD "\e[1m"
-#define RED "\e[31m"
-#define GREEN "\e[32m"
-#define YELLOW "\e[33m"
-#define BLUE "\e[34m"
-#define CLEAR "\e[0m"
-#define ERASE "\e[A\e[K"
-
 #define NAME_SIZE 32
 #define MAX_PLAYERS 2    // CHANGE LATER
 #define ROUND_DURATION 1 // CHNGE LATER

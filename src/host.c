@@ -12,7 +12,11 @@ void handle_new_client(int listen_socket, struct player *players)
     err(client_socket, "client accept error");
 
     read(client_socket, name, sizeof(name));
-    printf(GREEN BOLD ">>> %s joined <<<\n" CLEAR, name);
+
+    attron(COLOR_PAIR('G'));
+    printw(">>> %s joined <<<\n", name);
+    attroff(COLOR_PAIR('G'));
+    refresh();
 
     for (int i = 0; i < MAX_PLAYERS; ++i)
         if (players[i].id == 0)
@@ -26,7 +30,10 @@ void handle_new_client(int listen_socket, struct player *players)
 
 void disconnect(int client_socket, int index, struct player *players)
 {
-    printf(RED BOLD ">>> %s left <<<\n" CLEAR, players[index].name);
+    attron(COLOR_PAIR('R'));
+    printw(">>> %s left <<<\n", players[index].name);
+    attroff(COLOR_PAIR('R'));
+    refresh();
 
     close(client_socket);
     players[index].id = 0;
@@ -99,6 +106,13 @@ int main()
     char *buff = malloc(sizeof(char) * BUFFER_SIZE);
     struct song cur_song;
 
+    init_ncurses();
+
+    attron(COLOR_PAIR('B'));
+    printw("Waiting for players...\n");
+    attroff(COLOR_PAIR('B'));
+    refresh();
+
     while (total_played_songs <= total_songs)
     {
         server_listen(listen_socket, read_fds, players, cur_song.name); // blocks until something happens
@@ -130,8 +144,8 @@ int main()
         }
     }
 
-    printf("Game Over\n");
     err(kill(song_pid, SIGKILL), "kill error");
+    end_ncurses();
 
     return 0;
 }
