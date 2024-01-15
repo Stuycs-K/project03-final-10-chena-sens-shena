@@ -65,3 +65,11 @@
 | Anthony | Think about how to organize and merge game into server | 40         |
 | Amber   | Think about how to organize and merge game into server | 40         |
 | Shaurya | Think about how to organize and merge game into server | 40         |
+
+## 2024-01-14 - Merge music
+
+| Person  | Logs                    | Time (min) |
+| ------- | ----------------------- | ---------- |
+| Anthony | Merge music into server | 150        |
+| Amber   | Merge music into server | 150        |
+| Shaurya | Merge music into server | 150        |
