@@ -30,7 +30,7 @@
 
 #define NAME_SIZE 32
 #define MAX_PLAYERS 2 // CHANGE LATER
-#define ROUND_DURATION 1
+#define ROUND_DURATION 5
 
 struct player
 {

@@ -61,7 +61,7 @@ int award_point(struct player *playerlist, int n, int playerid, char *guess, cha
 { // player array, specific player index in array
     if (check_answer(guess, ans) == 0)
     {
-        for (int i = 0; i < n; i++)
+        for (int i = 1; i < n+1; i++)  //previously 0 to n
         {
             if (playerlist[i].id == playerid)
             { // player whos score u want to update

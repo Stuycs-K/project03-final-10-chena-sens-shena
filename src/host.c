@@ -32,7 +32,7 @@ void disconnect(int client_socket, int index, struct player *players)
     players[index].id = 0;
 }
 
-void handle_client(fd_set read_fds, struct player *players) // also take in song name
+void handle_client(fd_set read_fds, struct player *players, char *song_name)
 {
     char msg[BUFFER_SIZE];
     for (int i = 0; i < MAX_PLAYERS; ++i)
@@ -44,7 +44,7 @@ void handle_client(fd_set read_fds, struct player *players) // also take in song
             {
 
                 write_all(msg, i, players);
-                // award_points(players,MAX_PLAYERS,client_socket,msg,ans);
+                award_point(players, MAX_PLAYERS, client_socket, msg, song_name);
             }
             else
                 disconnect(client_socket, i, players);
@@ -52,7 +52,7 @@ void handle_client(fd_set read_fds, struct player *players) // also take in song
     }
 }
 
-void server_listen(int listen_socket, fd_set read_fds, struct player *players)
+void server_listen(int listen_socket, fd_set read_fds, struct player *players, char *song_name)
 {
     FD_ZERO(&read_fds);
     FD_SET(listen_socket, &read_fds);
@@ -75,7 +75,7 @@ void server_listen(int listen_socket, fd_set read_fds, struct player *players)
     if (FD_ISSET(listen_socket, &read_fds))
         handle_new_client(listen_socket, players);
 
-    handle_client(read_fds, players);
+    handle_client(read_fds, players, song_name);
 }
 
 int main()
@@ -97,10 +97,11 @@ int main()
     struct timeval start_time, current_time;
     gettimeofday(&start_time, NULL);
     char *buff = malloc(sizeof(char) * BUFFER_SIZE);
+    struct song cur_song;
 
     while (total_played_songs <= total_songs)
     {
-        server_listen(listen_socket, read_fds, players); // blocks until something happens
+        server_listen(listen_socket, read_fds, players, cur_song.name); // blocks until something happens
 
         gettimeofday(&current_time, NULL);
         double elapsed_time = difftime(current_time.tv_sec, start_time.tv_sec);
@@ -113,7 +114,7 @@ int main()
             if (total_played_songs == total_songs)
                 break;
 
-            struct song cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
+            cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
             printf("Song Name (FOR TESTING): %s\n", cur_song.name);
 
             // kill PID
