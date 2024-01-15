@@ -29,12 +29,15 @@ int check_answer(char *guess, char *ans)
     return answer;
 }
 
-void leaderboard(struct player *playerlist, int n)
+void leaderboard(struct player *playerlist, char *buff)
 {
+
+    int n = sizeofArray(playerlist);
+    printf("Size of playerlist array: %d\n", n);
     // sort the players by score
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 1; i < n; i++) // 0 to n-1 before
     {
-        for (int j = i + 1; j < n; j++)
+        for (int j = i + 1; j < n + 1; j++)
         {
             if (playerlist[i].points < playerlist[j].points)
             {                                       // compare thru the index
@@ -45,9 +48,11 @@ void leaderboard(struct player *playerlist, int n)
         }
     }
     printf("LEADERBOARD: \n");
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < n + 1; i++)
     {
-        printf("%d. %s (id: %d): %d\n", i + 1, playerlist[i].name, playerlist[i].id, playerlist[i].points);
+        char place[256];
+        sprintf(place, "%d. %s (id: %d): %d\n", i, playerlist[i].name, playerlist[i].id, playerlist[i].points);
+        strcat(buff, place);
     }
     // 2 players, change later
 }
@@ -128,46 +133,10 @@ void game(struct player *playerlist, int n)
 int sizeofArray(struct player *players)
 {
     int n = 0;
-    int i = 0;
-    while (players[i].id != 0)
-    {
-        n++;
-        i++;
-    }
+
+    for (int i = 0; i < MAX_PLAYERS; ++i)
+        if (players[i].id >= 4)
+            ++n;
+
     return n;
-}
-int main()
-{
-    char string[256] = "Blank Space";
-    char test[256] = "Test";
-    struct player playerlist[2];
-    struct player t;
-    strcpy(t.name, "Amber");
-    t.id = 1; // random number chosen
-    t.points = 20;
-    playerlist[0] = t;
-    struct player t1;
-    strcpy(t1.name, "Anthony");
-    t1.id = 2; // random number chosen
-    t1.points = 15;
-    playerlist[1] = t1;
-
-    struct player t2;
-    strcpy(t2.name, "Shaurya");
-    t2.id = 3; // random number chosen
-    t2.points = 5;
-    playerlist[2] = t2;
-    // leaderboard(playerlist,3);
-    // updateScore(playerlist,3,3,50);
-
-    struct player t3;
-    strcpy(t3.name, "Carmin");
-    t3.id = 3; // random number chosen
-    t3.points = 14;
-    playerlist[3] = t3;
-
-    printf("%d\n", sizeofArray(playerlist));
-    // game(playerlist, 4);
-    // strcpy()
-    // loop(t);
 }

@@ -18,6 +18,7 @@ void handle_new_client(int listen_socket, struct player *players)
         if (players[i].id == 0)
         {
             players[i].id = client_socket;
+            players[i].points = 0;
             strcpy(players[i].name, name);
             break;
         }
@@ -95,6 +96,7 @@ int main()
 
     struct timeval start_time, current_time;
     gettimeofday(&start_time, NULL);
+    char *buff = malloc(sizeof(char) * BUFFER_SIZE);
 
     while (total_played_songs <= total_songs)
     {
@@ -105,9 +107,9 @@ int main()
 
         if (elapsed_time > ROUND_DURATION)
         {
-            // game end things
-            // show leaderboard
-            // new song
+            leaderboard(players, buff);
+            write_all(buff, 0, players);
+
             if (total_played_songs == total_songs)
                 break;
 
