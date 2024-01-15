@@ -1,19 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <ctype.h>
-#include "../include/music.h"
-
-struct player
-{
-  int id;
-  char name[NAME_SIZE];
-  int points;
-};
+#include "imports.h"
 
 void user_input(char *returnString);
 void convert_lower(char *string);
@@ -26,4 +14,4 @@ void play_random_song();
 void game(struct player *playerlist, int n);
 int sizeofArray(struct player *players);
 
-#endif 
+#endif

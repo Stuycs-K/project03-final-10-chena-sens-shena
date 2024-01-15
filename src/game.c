@@ -1,12 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <ctype.h>
-#include "../include/music.h"
 #include "../include/game.h"
-#include "../include/utils.h"
-
 
 // Get user input for guess, with 1s cooldown between guesses (no server)'''
 // guesses are lowercase: add this note to directiosn in the beginning later
@@ -31,9 +23,9 @@ void convert_lower(char *string)
 
 int check_answer(char *guess, char *ans)
 {
-    convert_lower(ans);               // convert song title to all lowercase
-    guess[strcspn(guess, "\n")] = 0;  // remove the newline from the end of the guess when they press enter
-    int answer = strcmp(guess, ans);  // same
+    convert_lower(ans);              // convert song title to all lowercase
+    guess[strcspn(guess, "\n")] = 0; // remove the newline from the end of the guess when they press enter
+    int answer = strcmp(guess, ans); // same
     return answer;
 }
 
@@ -50,7 +42,7 @@ void leaderboard(struct player *playerlist, int n)
                 playerlist[i] = playerlist[j];
                 playerlist[j] = temp;
             }
-        } 
+        }
     }
     printf("LEADERBOARD: \n");
     for (int i = 0; i < n; i++)
@@ -87,69 +79,65 @@ int award_point(struct player *playerlist, int n, int playerid, char *guess, cha
 
 void game(struct player *playerlist, int n)
 {
-    // initialize_game() {
-    struct song songs[] = {
-        {"Cooler Than Me", "assets/c.mp3"},
-        {"Replay", "assets/r.mp3"}};
-    int total_songs = sizeof(songs) / sizeof(songs[0]);
-    struct song *played_songs = malloc(total_songs * sizeof(struct song));
-    int total_played_songs = 0;
-    // }
+    // // initialize_game() {
+    // struct song songs[] = {
+    //     {"Cooler Than Me", "assets/c.mp3"},
+    //     {"Replay", "assets/r.mp3"}};
+    // int total_songs = sizeof(songs) / sizeof(songs[0]);
+    // struct song *played_songs = malloc(total_songs * sizeof(struct song));
+    // int total_played_songs = 0;
 
-    // game loop
-    while (total_played_songs < total_songs)
-    {
-        
-        // play_random_song( ) {
-        
-        // pick random song and add song to played songs
-        struct song cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
-        printf("Song Name (FOR TESTING): %s\n", cur_song.name);
+    //     // play_random_song( ) {
 
-        play_song(cur_song.file_name); // MOVE TO SERVER
-        played_songs[total_played_songs] = cur_song;
-        total_played_songs++;
-        // }
+    //     // pick random song and add song to played songs
+    //     struct song cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
+    //     printf("Song Name (FOR TESTING): %s\n", cur_song.name);
 
-        char read[1024]; // not needed
+    //     play_song(cur_song.file_name); // MOVE TO SERVER
+    //     played_songs[total_played_songs] = cur_song;
+    //     total_played_songs++;
+    //     // }
 
-        // TODO: get player id
+    //     char read[1024]; // not needed
 
-        int guessed = 0;
-        while (guessed == 0)
-        {
-            // guessing {
-            // guessed = guessing(playerlist, cur_song.name);
-            // prompt players for guess, read the first player
-            user_input(read);
+    //     // TODO: get player id
 
-            // id of first player to respond
-            int id = 1; // placeholder id right now
+    //     int guessed = 0;
+    //     while (guessed == 0)
+    //     {
+    //         // guessing {
+    //         // guessed = guessing(playerlist, cur_song.name);
+    //         // prompt players for guess, read the first player
+    //         user_input(read);
 
-            guessed = award_point(playerlist, n, id, read, cur_song.name);
-            //}
+    //         // id of first player to respond
+    //         int id = 1; // placeholder id right now
 
-            // keep reading from next player's guess if that guess wasn't correct
-        }
-        printf("\n");
-        leaderboard(playerlist, n);
-        printf("\n");
-    }
+    //         guessed = award_point(playerlist, n, id, read, cur_song.name);
+    //         //}
 
-    printf("All Songs Completed!\n");
+    //         // keep reading from next player's guess if that guess wasn't correct
+    //     }
+    //     printf("\n");
+    //     leaderboard(playerlist, n);
+    //     printf("\n");
+    // // }
+
+    // printf("All Songs Completed!\n");
 }
 int sizeofArray(struct player *players)
 {
     int n = 0;
     int i = 0;
-    while (players[i].id != NULL)
+    while (players[i].id != 0)
     {
         n++;
         i++;
     }
     return n;
 }
-int main() {
+int main()
+{
     char string[256] = "Blank Space";
     char test[256] = "Test";
     struct player playerlist[2];

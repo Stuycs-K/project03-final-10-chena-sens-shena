@@ -1,6 +1,7 @@
 game
 host
 player
+.vscode
 
 # Prerequisites
 *.d
