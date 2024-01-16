@@ -4,8 +4,6 @@
 // guesses are lowercase: add this note to directiosn in the beginning later
 void user_input(char *returnString)
 {
-    clear_stack();
-    
     char line[1024] = {0};
     printf("Guess: ");
     fflush(stdout);
@@ -17,15 +15,11 @@ void user_input(char *returnString)
 
 void convert_lower(char *str)
 {
-    clear_stack();
-    
     for (; *str; str++) *str = tolower(*str);
 }
 
 int check_answer(char *guess, char *ans)
 {
-    clear_stack();
-    
     guess[strcspn(guess, "\n")] = 0; // remove the newline from the end of the guess when they press enter
     convert_lower(ans);              // convert song title to all lowercase
     int answer = strcmp(guess, ans); // same
@@ -34,8 +28,6 @@ int check_answer(char *guess, char *ans)
 
 void leaderboard(struct player *playerlist, char *buff)
 {
-    clear_stack();
-
     int n = sizeofArray(playerlist);
     printf("Size of playerlist array: %d\n", n);
     // sort the players by score
@@ -64,8 +56,6 @@ void leaderboard(struct player *playerlist, char *buff)
 
 int award_point(struct player *playerlist, int n, int playerid, char *guess, char *ans)
 { // player array, specific player index in array
-    clear_stack();
-    
     if (check_answer(guess, ans) == 0)
     {
         // printf("INSIDE AQARD POINT\n");

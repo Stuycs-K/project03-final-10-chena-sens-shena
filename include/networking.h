@@ -2,6 +2,7 @@
 #define NETWORKING_H
 
 #include "imports.h"
+#include "utils.h"
 
 void err(int i, char *message);
 int server_setup();

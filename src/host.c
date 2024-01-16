@@ -6,19 +6,13 @@
 
 void handle_new_client(int listen_socket, struct player *players)
 {
-    clear_stack();
-    
     char name[NAME_SIZE] = {0};
 
     int client_socket = server_tcp_handshake(listen_socket);
     err(client_socket, "client accept error");
 
-    read(client_socket, name, sizeof(name));
-
-    attron(COLOR_PAIR('G'));
-    printw(">>> %s joined <<<\n", name);
-    attroff(COLOR_PAIR('G'));
-    refresh();
+    err(read(client_socket, name, sizeof(name)), "read error");
+    printf(GREEN BOLD ">>> %s joined <<<\n" CLEAR, name);
 
     for (int i = 0; i < MAX_PLAYERS; ++i)
         if (players[i].id == 0)
@@ -32,12 +26,7 @@ void handle_new_client(int listen_socket, struct player *players)
 
 void disconnect(int client_socket, int index, struct player *players)
 {
-    // clear_stack();
-
-    attron(COLOR_PAIR('R'));
-    printw(">>> %s left <<<\n", players[index].name);
-    attroff(COLOR_PAIR('R'));
-    refresh();
+    printf(RED BOLD ">>> %s left <<<\n" CLEAR, players[index].name);
 
     close(client_socket);
     players[index].id = 0;
@@ -45,9 +34,8 @@ void disconnect(int client_socket, int index, struct player *players)
 
 void handle_client(fd_set read_fds, struct player *players, char *song_name)
 {
-    clear_stack();
-    
-    char msg[BUFFER_SIZE] = {0}; 
+    char msg[BUFFER_SIZE] = {0};
+
     for (int i = 0; i < MAX_PLAYERS; ++i)
     {
         int client_socket = players[i].id;
@@ -55,7 +43,6 @@ void handle_client(fd_set read_fds, struct player *players, char *song_name)
         {
             if (read(client_socket, msg, sizeof(msg)))
             {
-
                 write_all(msg, i, players);
                 award_point(players, MAX_PLAYERS, client_socket, msg, song_name);
             }
@@ -67,8 +54,6 @@ void handle_client(fd_set read_fds, struct player *players, char *song_name)
 
 void server_listen(int listen_socket, fd_set read_fds, struct player *players, char *song_name)
 {
-    clear_stack();
-    
     FD_ZERO(&read_fds);
     FD_SET(listen_socket, &read_fds);
 
@@ -92,19 +77,17 @@ void server_listen(int listen_socket, fd_set read_fds, struct player *players, c
 
     handle_client(read_fds, players, song_name);
 }
-void print_playerlist(struct player *players) {
-    clear_stack();
-    
+void print_playerlist(struct player *players)
+{
     printf("PRINTING PLAYERLIST\n");
-    for (int i = 0;i<MAX_PLAYERS;i++) {
-        printf("players[%d].name: %s,id: %d,points: %d\n",i,players[i].name,players[i].id,players[i].points);
+    for (int i = 0; i < MAX_PLAYERS; i++)
+    {
+        printf("players[%d].name: %s,id: %d,points: %d\n", i, players[i].name, players[i].id, players[i].points);
     }
 }
 
 int main()
 {
-    clear_stack();
-    
     // setup
     int listen_socket = server_setup();
     fd_set read_fds;
@@ -123,13 +106,6 @@ int main()
     gettimeofday(&start_time, NULL);
     char *buff = malloc(sizeof(char) * BUFFER_SIZE);
     struct song cur_song;
-
-    init_ncurses();
-
-    attron(COLOR_PAIR('B'));
-    printw("Waiting for players...\n");
-    attroff(COLOR_PAIR('B'));
-    refresh();
 
     while (total_played_songs <= total_songs)
     {
@@ -166,7 +142,6 @@ int main()
     }
 
     err(kill(song_pid, SIGKILL), "kill error");
-    end_ncurses();
 
     return 0;
 }
