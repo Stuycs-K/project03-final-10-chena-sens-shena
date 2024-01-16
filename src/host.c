@@ -120,6 +120,8 @@ int main()
 
         if (elapsed_time > ROUND_DURATION)
         {
+            clear();
+
             buff = calloc(sizeof(char), BUFFER_SIZE);
             leaderboard(players, buff);
             write_all(buff, 0, players);
@@ -128,8 +130,8 @@ int main()
                 break;
 
             cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
-            printc("Song Name (FOR TESTING): ", 0, 0);
-            printc(cur_song.name, 0, 1);
+            // printc("Song Name (FOR TESTING): ", 0, 0);
+            // printc(cur_song.name, 0, 1);
 
             // kill PID
             if (song_pid != 0)

@@ -54,7 +54,7 @@ void write_all(char *msg, int index, struct player *players)
     char buff[BUFFER_SIZE] = {0};
 
     if (index == 0) // host
-        sprintf(buff, "%s: %s", "Host", msg);
+        sprintf(buff, "%s", msg);
     else // client
         sprintf(buff, "%s: %s", players[index].name, msg);
 
@@ -64,6 +64,5 @@ void write_all(char *msg, int index, struct player *players)
             write(players[i].id, buff, sizeof(buff));
 
     // host
-    clear();
     printc(buff, 'Y', 1);
 }

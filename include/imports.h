@@ -23,8 +23,8 @@
 #define BUFFER_SIZE 1024
 
 #define NAME_SIZE 32
-#define MAX_PLAYERS 2    // CHANGE LATER
-#define ROUND_DURATION 1 // CHNGE LATER
+#define MAX_PLAYERS 2
+#define ROUND_DURATION 15
 
 struct player
 {

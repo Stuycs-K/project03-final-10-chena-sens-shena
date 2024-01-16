@@ -76,17 +76,9 @@
 
 ## 2024-01-15 - Merge game
 
-| Person  | Logs                        | Time (min) |
-| ------- | --------------------------- | ---------- |
-| Anthony | Merge game into server      | 0          |
-|         | Use ncurses and fix display | 60         |
-| Amber   | Merge game into server, working game      | 300          |
-| Shaurya | Merge game into server      | 0          |
-
-## NOTES
-- the text saying a player is correct only shows up in the host's terminal; players will not know if their guess is correct
-- the host can see the correct answer for the song being played 
-
-## BUGS
-- the first player's username will show up as "Host" when it's messages are sent out to everyone
-
+| Person  | Logs                                 | Time (min) |
+| ------- | ------------------------------------ | ---------- |
+| Anthony | Merge game into server               | 300        |
+|         | Use ncurses and fix display          | 60         |
+| Amber   | Merge game into server, working game | 300        |
+| Shaurya | Merge game into server               | 300        |

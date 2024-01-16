@@ -34,11 +34,10 @@ int main(int argc, char *argv[])
 
         if (FD_ISSET(server_socket, &read_fds))
         {
+            clear();
+
             if (read(server_socket, buff, sizeof(buff)))
-            {
-                clear();
                 printc(buff, 'G', 1);
-            }
             else
             {
                 printc(">>> Server disconnected <<<", 'R', 1);
