@@ -23,6 +23,7 @@ void init_ncurses()
     initscr();
     start_color();
     init_pair('R', COLOR_RED, COLOR_BLACK);
+    init_pair('Y', COLOR_YELLOW, COLOR_BLACK);
     init_pair('G', COLOR_GREEN, COLOR_BLACK);
     init_pair('B', COLOR_BLUE, COLOR_BLACK);
 }
@@ -42,7 +43,6 @@ void printc(char *str, char color, int newline)
     attron(COLOR_PAIR(color));
     printw("%s", str);
     attroff(COLOR_PAIR(color));
-    refresh();
 
     if (newline)
     {
@@ -50,19 +50,19 @@ void printc(char *str, char color, int newline)
         int x, y;
         getyx(stdscr, y, x);
         move(y, 0);
-        refresh();
     }
+
+    refresh();
 }
 
 void write_all(char *msg, int index, struct player *players)
 {
     char buff[BUFFER_SIZE] = {0};
 
-    // if (index != 0) // client
-    // {
-    //     sprintf(buff, YELLOW "%s" CLEAR, players[index].name, msg);
-    //     write(players[index].id, ERASE, strlen(ERASE));
-    // }
+    if (index == 0) // host
+        sprintf(buff, "%s: %s", "Host", msg);
+    else // client
+        sprintf(buff, "%s: %s", players[index].name, msg);
 
     // clients
     for (int i = 0; i < MAX_PLAYERS; ++i)
