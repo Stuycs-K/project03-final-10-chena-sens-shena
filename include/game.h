@@ -2,7 +2,6 @@
 #define GAME_H
 
 #include "imports.h"
-#include "utils.h"
 
 void user_input(char *returnString);
 void convert_lower(char *string);

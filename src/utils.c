@@ -18,15 +18,34 @@ int rand_int()
     return n;
 }
 
+void init_ncurses()
+{
+    initscr();
+    start_color();
+    init_pair('R', COLOR_RED, COLOR_BLACK);
+    init_pair('G', COLOR_GREEN, COLOR_BLACK);
+    init_pair('B', COLOR_BLUE, COLOR_BLACK);
+}
+
+void end_ncurses()
+{
+    attron(COLOR_PAIR('B'));
+    printw("Press any key to exit...");
+    attroff(COLOR_PAIR('B'));
+
+    getch();
+    endwin();
+}
+
 void write_all(char *msg, int index, struct player *players)
 {
     char buff[BUFFER_SIZE] = {0};
 
-    if (index != 0) // client
-    {
-        sprintf(buff, YELLOW "%s: " CLEAR "%s", players[index].name, msg);
-        write(players[index].id, ERASE, strlen(ERASE));
-    }
+    // if (index != 0) // client
+    // {
+    //     sprintf(buff, YELLOW "%s" CLEAR, players[index].name, msg);
+    //     write(players[index].id, ERASE, strlen(ERASE));
+    // }
 
     // clients
     for (int i = 0; i < MAX_PLAYERS; ++i)
@@ -34,5 +53,5 @@ void write_all(char *msg, int index, struct player *players)
             write(players[i].id, buff, sizeof(buff));
 
     // host
-    printf("%s", buff);
+    printw("%s", buff);
 }

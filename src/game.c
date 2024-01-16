@@ -15,7 +15,8 @@ void user_input(char *returnString)
 
 void convert_lower(char *str)
 {
-    for (; *str; str++) *str = tolower(*str);
+    for (; *str; str++)
+        *str = tolower(*str);
 }
 
 int check_answer(char *guess, char *ans)
@@ -29,9 +30,8 @@ int check_answer(char *guess, char *ans)
 void leaderboard(struct player *playerlist, char *buff)
 {
     int n = sizeofArray(playerlist);
-    printf("Size of playerlist array: %d\n", n);
     // sort the players by score
-    for (int i = 0; i < n-1; i++) // 0 to n-1 before //1 to n
+    for (int i = 0; i < n - 1; i++) // 0 to n-1 before //1 to n
     {
         for (int j = i + 1; j < n + 1; j++)
         {
@@ -43,12 +43,12 @@ void leaderboard(struct player *playerlist, char *buff)
             }
         }
     }
-    strcat(buff,"LEADERBOARD: \n");
-    for (int i = 0; i < n ; i++) //1 to n
+    strcat(buff, "LEADERBOARD: \n");
+    for (int i = 0; i < n; i++) // 1 to n
     {
         // printf("%d. %s (id: %d): %d\n", i+1, playerlist[i].name, playerlist[i].id, playerlist[i].points);
         char place[256] = {0};
-        sprintf(place, "%d. %s (id: %d): %d\n", i+1, playerlist[i].name, playerlist[i].id, playerlist[i].points);
+        sprintf(place, "%d. %s (id: %d): %d\n", i + 1, playerlist[i].name, playerlist[i].id, playerlist[i].points);
         strcat(buff, place);
     }
     // 2 players, change later
@@ -59,14 +59,14 @@ int award_point(struct player *playerlist, int n, int playerid, char *guess, cha
     if (check_answer(guess, ans) == 0)
     {
         // printf("INSIDE AQARD POINT\n");
-        for (int i = 0; i < n; i++)  //previously 0 to n, 1 to n+1
+        for (int i = 0; i < n; i++) // previously 0 to n, 1 to n+1
         {
             // printf("i: %d, playerlist[i].name: %s,playerlist[i].id: %d\n",i,playerlist[i].name,playerlist[i].id);
             // printf("INSIDE FOR LOOP, I: %d\n",i);
             // printf("looking for playerid %d,playerlist[%d].id: %d\n",playerid,i,playerlist[i].id);
             if (playerlist[i].id == playerid)
             { // player whos score u want to update
-                printf("That is correct! Awarding 5 points to player %s\n", playerlist[i].name);
+                printw("That is correct! Awarding 5 points to player %s\n", playerlist[i].name);
                 playerlist[i].points += 5;
                 // printf("Changing %s's (id: %d) score (previous: %d) to %d\n", playerlist[i].name, playerid, playerlist[i].points - 5, playerlist[i].points);
                 return 1;
