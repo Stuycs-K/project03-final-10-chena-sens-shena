@@ -1,11 +1,5 @@
 #include "../include/utils.h"
 
-void convertLower(char *str)
-{
-    for (; *str; str++)
-        *str = tolower(*str);
-}
-
 int rand_int()
 {
     int file = open("/dev/random", O_RDONLY);
@@ -70,5 +64,6 @@ void write_all(char *msg, int index, struct player *players)
             write(players[i].id, buff, sizeof(buff));
 
     // host
-    printc(buff, 0, 0);
+    clear();
+    printc(buff, 'Y', 1);
 }

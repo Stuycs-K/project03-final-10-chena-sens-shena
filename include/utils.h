@@ -3,7 +3,6 @@
 
 #include "imports.h"
 
-void convertLower(char *string);
 void init_ncurses();
 void end_ncurses();
 void printc(char *str, char color, int newline);

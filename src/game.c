@@ -15,8 +15,8 @@ void user_input(char *returnString)
 
 void convert_lower(char *str)
 {
-    for (; *str; str++)
-        *str = tolower(*str);
+    for (int i = 0; str[i]; i++)
+        str[i] = tolower(str[i]);
 }
 
 int check_answer(char *guess, char *ans)

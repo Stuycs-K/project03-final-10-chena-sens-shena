@@ -90,8 +90,12 @@ int main()
     struct player players[MAX_PLAYERS] = {0};
 
     struct song songs[] = {
-        {"Cooler Than Me", "assets/coolerthanme.mp3"},
-        {"Replay", "assets/replay.mp3"}};
+        {"CoolerThanMe", "assets/coolerthanme.mp3"},
+        {"Replay", "assets/replay.mp3"},
+        {"CountingStars", "assets/counting_stars.mp3"},
+        {"Animals", "assets/animals.mp3"},
+        {"BillieJean", "assets/billie_jean.mp3"},
+        {"Despacito", "assets/Despacito.mp3"}};
     int total_songs = sizeof(songs) / sizeof(songs[0]);
     struct song played_songs[total_songs];
     int total_played_songs = 0;
