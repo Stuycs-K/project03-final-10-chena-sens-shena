@@ -37,6 +37,23 @@ void end_ncurses()
     endwin();
 }
 
+void printc(char *str, char color, int newline)
+{
+    attron(COLOR_PAIR(color));
+    printw("%s", str);
+    attroff(COLOR_PAIR(color));
+    refresh();
+
+    if (newline)
+    {
+        printw("\n");
+        int x, y;
+        getyx(stdscr, y, x);
+        move(y, 0);
+        refresh();
+    }
+}
+
 void write_all(char *msg, int index, struct player *players)
 {
     char buff[BUFFER_SIZE] = {0};
@@ -53,5 +70,5 @@ void write_all(char *msg, int index, struct player *players)
             write(players[i].id, buff, sizeof(buff));
 
     // host
-    printw("%s", buff);
+    printc(buff, 0, 0);
 }

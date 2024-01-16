@@ -13,12 +13,10 @@ int main(int argc, char *argv[])
     init_ncurses();
     char name[NAME_SIZE] = {0};
 
-    attron(COLOR_PAIR('B'));
-    printw("Successfully connected to %s\n", IP);
-    printw("Enter your name: ");
-    attroff(COLOR_PAIR('B'));
+    printc("Successfully connected to ", 'B', 0);
+    printc(IP, 'B', 1);
+    printc("Enter your name: ", 'B', 0);
     scanw("%s", name);
-    refresh();
 
     write(server_socket, name, sizeof(name));
 
@@ -37,17 +35,10 @@ int main(int argc, char *argv[])
         if (FD_ISSET(server_socket, &read_fds))
         {
             if (read(server_socket, buff, sizeof(buff)))
-            {
-                printw("%s", buff);
-                refresh();
-            }
+                printc(buff, 0, 0);
             else
             {
-                attron(COLOR_PAIR('R'));
-                printw(">>> Server disconnected <<<\n");
-                attroff(COLOR_PAIR('R'));
-                refresh();
-
+                printc(">>> Server disconnected <<<", 'R', 1);
                 close(server_socket);
                 end_ncurses();
 

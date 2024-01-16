@@ -13,10 +13,9 @@ void handle_new_client(int listen_socket, struct player *players)
 
     read(client_socket, name, sizeof(name));
 
-    attron(COLOR_PAIR('G'));
-    printw(">>> %s joined <<<\n", name);
-    attroff(COLOR_PAIR('G'));
-    refresh();
+    printc(">>> ", 'G', 0);
+    printc(name, 'G', 0);
+    printc(" joined <<<", 'G', 1);
 
     for (int i = 0; i < MAX_PLAYERS; ++i)
         if (players[i].id == 0)
@@ -30,10 +29,9 @@ void handle_new_client(int listen_socket, struct player *players)
 
 void disconnect(int client_socket, int index, struct player *players)
 {
-    attron(COLOR_PAIR('R'));
-    printw(">>> %s left <<<\n", players[index].name);
-    attroff(COLOR_PAIR('R'));
-    refresh();
+    printc(">>> ", 'R', 0);
+    printc(players[index].name, 'R', 0);
+    printc(" disconnected <<<", 'R', 1);
 
     close(client_socket);
     players[index].id = 0;
@@ -41,7 +39,7 @@ void disconnect(int client_socket, int index, struct player *players)
 
 void handle_client(fd_set read_fds, struct player *players, char *song_name)
 {
-    char msg[BUFFER_SIZE] = {0}; 
+    char msg[BUFFER_SIZE] = {0};
     for (int i = 0; i < MAX_PLAYERS; ++i)
     {
         int client_socket = players[i].id;
@@ -49,7 +47,6 @@ void handle_client(fd_set read_fds, struct player *players, char *song_name)
         {
             if (read(client_socket, msg, sizeof(msg)))
             {
-
                 write_all(msg, i, players);
                 award_point(players, MAX_PLAYERS, client_socket, msg, song_name);
             }
@@ -84,10 +81,13 @@ void server_listen(int listen_socket, fd_set read_fds, struct player *players, c
 
     handle_client(read_fds, players, song_name);
 }
-void print_playerlist(struct player *players) {
+
+void print_playerlist(struct player *players)
+{
     printf("PRINTING PLAYERLIST\n");
-    for (int i = 0;i<MAX_PLAYERS;i++) {
-        printf("players[%d].name: %s,id: %d,points: %d\n",i,players[i].name,players[i].id,players[i].points);
+    for (int i = 0; i < MAX_PLAYERS; i++)
+    {
+        printf("players[%d].name: %s,id: %d,points: %d\n", i, players[i].name, players[i].id, players[i].points);
     }
 }
 
@@ -114,10 +114,7 @@ int main()
 
     init_ncurses();
 
-    attron(COLOR_PAIR('B'));
-    printw("Waiting for players...\n");
-    attroff(COLOR_PAIR('B'));
-    refresh();
+    printc("Waiting for players...", 'B', 1);
 
     while (total_played_songs <= total_songs)
     {
@@ -138,7 +135,8 @@ int main()
                 break;
 
             cur_song = random_song(songs, total_songs, played_songs, total_played_songs);
-            printf("Song Name (FOR TESTING): %s\n", cur_song.name);
+            printc("Song Name (FOR TESTING): ", 0, 0);
+            printc(cur_song.name, 0, 1);
 
             // kill PID
             if (song_pid != 0)
@@ -155,6 +153,8 @@ int main()
 
     err(kill(song_pid, SIGKILL), "kill error");
     end_ncurses();
+
+    free(buff);
 
     return 0;
 }
