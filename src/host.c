@@ -89,11 +89,20 @@ int main()
     // setup
     int listen_socket = server_setup();
     fd_set read_fds;
-    struct player players[MAX_PLAYERS];
+    struct player players[MAX_PLAYERS] = {0};
 
     struct song songs[] = {
         {"Cooler Than Me", "assets/c.mp3"},
-        {"Replay", "assets/r.mp3"}};
+        {"Replay", "assets/r.mp3"},
+        {"Counting Stars", "assets/counting_stars.mp3"},
+        {"Animals", "assets/animals.mp3"},
+        {"Billie Jean", "assets/billie_jean.mp3"},
+        {"Despacito", "assets/Despacito.mp3"},
+        {"Gangnam Style", "assets/gangnam_stlye.mp3"},
+        {"Roar", "assets/roar.mp3"},
+        {"Shake It Off", "assets/shake_it_off.mp3"},
+        {"Sorry", "assets/sorry.mp3"},
+        {"Waka Waka", "assets/waka_waka.mp3"}};
     int total_songs = sizeof(songs) / sizeof(songs[0]);
     struct song played_songs[total_songs];
     int total_played_songs = 0;
