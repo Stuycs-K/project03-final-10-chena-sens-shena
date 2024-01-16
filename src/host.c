@@ -6,7 +6,9 @@
 
 void handle_new_client(int listen_socket, struct player *players)
 {
-    char name[NAME_SIZE];
+    clear_stack();
+    
+    char name[NAME_SIZE] = {0};
 
     int client_socket = server_tcp_handshake(listen_socket);
     err(client_socket, "client accept error");
@@ -26,6 +28,8 @@ void handle_new_client(int listen_socket, struct player *players)
 
 void disconnect(int client_socket, int index, struct player *players)
 {
+    clear_stack();
+    
     printf(RED BOLD ">>> %s left <<<\n" CLEAR, players[index].name);
 
     close(client_socket);
@@ -34,7 +38,9 @@ void disconnect(int client_socket, int index, struct player *players)
 
 void handle_client(fd_set read_fds, struct player *players, char *song_name)
 {
-    char msg[BUFFER_SIZE];
+    clear_stack();
+    
+    char msg[BUFFER_SIZE] = {0}; 
     for (int i = 0; i < MAX_PLAYERS; ++i)
     {
         int client_socket = players[i].id;
@@ -54,6 +60,8 @@ void handle_client(fd_set read_fds, struct player *players, char *song_name)
 
 void server_listen(int listen_socket, fd_set read_fds, struct player *players, char *song_name)
 {
+    clear_stack();
+    
     FD_ZERO(&read_fds);
     FD_SET(listen_socket, &read_fds);
 
@@ -78,6 +86,8 @@ void server_listen(int listen_socket, fd_set read_fds, struct player *players, c
     handle_client(read_fds, players, song_name);
 }
 void print_playerlist(struct player *players) {
+    clear_stack();
+    
     printf("PRINTING PLAYERLIST\n");
     for (int i = 0;i<MAX_PLAYERS;i++) {
         printf("players[%d].name: %s,id: %d,points: %d\n",i,players[i].name,players[i].id,players[i].points);
@@ -86,10 +96,12 @@ void print_playerlist(struct player *players) {
 
 int main()
 {
+    clear_stack();
+    
     // setup
     int listen_socket = server_setup();
     fd_set read_fds;
-    struct player players[MAX_PLAYERS];
+    struct player players[MAX_PLAYERS] = {0};
 
     struct song songs[] = {
         {"Cooler Than Me", "assets/coolerthanme.mp3"},
@@ -102,8 +114,8 @@ int main()
 
     struct timeval start_time, current_time;
     gettimeofday(&start_time, NULL);
-    char *buff = malloc(sizeof(char) * BUFFER_SIZE);
-    struct song cur_song;
+    char *buff = calloc(sizeof(char), BUFFER_SIZE);
+    struct song cur_song = {0};
 
     while (total_played_songs <= total_songs)
     {
@@ -115,7 +127,7 @@ int main()
         if (elapsed_time > ROUND_DURATION)
         {
             // print_playerlist(players);
-            buff = malloc(sizeof(char) * BUFFER_SIZE);
+            buff = calloc(sizeof(char), BUFFER_SIZE);
             // printf("LEADERBOARJDLSKF\n");
             leaderboard(players, buff);
             write_all(buff, 0, players);

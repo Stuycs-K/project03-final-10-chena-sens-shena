@@ -3,6 +3,8 @@
 
 int main(int argc, char *argv[])
 {
+    clear_stack();
+    
     char *IP = "127.0.0.1";
 
     if (argc > 1)
@@ -11,14 +13,14 @@ int main(int argc, char *argv[])
     int server_socket = client_tcp_handshake(IP);
     printf("Successfully connected to %s\n", IP);
 
-    char name[NAME_SIZE];
+    char name[NAME_SIZE] = {0};
 
     printf("Enter your name: ");
     fgets(name, sizeof(name), stdin);
     name[strlen(name) - 1] = '\0';
     write(server_socket, name, sizeof(name));
 
-    char buff[BUFFER_SIZE];
+    char buff[BUFFER_SIZE] = {0};
     fd_set read_fds;
 
     while (1)

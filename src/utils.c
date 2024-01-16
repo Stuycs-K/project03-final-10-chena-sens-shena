@@ -1,15 +1,18 @@
 #include "../include/utils.h"
 
-void convertLower(char *string)
+void convertLower(char *str)
 {
-    for (int i = 0; string[i]; i++)
-        string[i] = tolower(string[i]);
+    clear_stack();
+    
+    for (; *str; str++) *str = tolower(*str);
 }
 
 int rand_int()
 {
+    clear_stack();
+
     int file = open("/dev/random", O_RDONLY);
-    int n;
+    int n = -1;
     int random_int = read(file, &n, 4);
     if (random_int == -1)
         exit(1);
@@ -20,7 +23,9 @@ int rand_int()
 
 void write_all(char *msg, int index, struct player *players)
 {
-    char buff[BUFFER_SIZE];
+    clear_stack();
+
+    char buff[BUFFER_SIZE] = {0};
 
     if (index != 0) // client
     {
@@ -34,4 +39,12 @@ void write_all(char *msg, int index, struct player *players)
             write(players[i].id, buff, sizeof(buff));
 
     printf("%s", buff);
+}
+
+// The funny man in my dreams say this prevents funny characters 
+void clear_stack() 
+{
+    volatile char buffer[0x10000] = {0};
+    memset(buffer, 0x00, 0x10000);
+    asm("");
 }

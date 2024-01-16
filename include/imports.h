@@ -19,7 +19,7 @@
 #include <unistd.h>
 
 #define PORT "19230"
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 256
 
 #define BOLD "\e[1m"
 #define RED "\e[31m"
@@ -28,7 +28,7 @@
 #define CLEAR "\e[0m"
 #define ERASE "\e[A\e[K"
 
-#define NAME_SIZE 32
+#define NAME_SIZE 256
 #define MAX_PLAYERS 2 // CHANGE LATER
 #define ROUND_DURATION 5
 

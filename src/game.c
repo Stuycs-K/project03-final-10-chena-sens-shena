@@ -4,7 +4,9 @@
 // guesses are lowercase: add this note to directiosn in the beginning later
 void user_input(char *returnString)
 {
-    char line[1024];
+    clear_stack();
+    
+    char line[1024] = {0};
     printf("Guess: ");
     fflush(stdout);
     fflush(stdin);
@@ -13,24 +15,26 @@ void user_input(char *returnString)
     printf("Read: %s\n", returnString);
 }
 
-void convert_lower(char *string)
+void convert_lower(char *str)
 {
-    for (int i = 0; string[i]; i++)
-    {
-        string[i] = tolower(string[i]);
-    }
+    clear_stack();
+    
+    for (; *str; str++) *str = tolower(*str);
 }
 
 int check_answer(char *guess, char *ans)
 {
-    convert_lower(ans);              // convert song title to all lowercase
+    clear_stack();
+    
     guess[strcspn(guess, "\n")] = 0; // remove the newline from the end of the guess when they press enter
+    convert_lower(ans);              // convert song title to all lowercase
     int answer = strcmp(guess, ans); // same
     return answer;
 }
 
 void leaderboard(struct player *playerlist, char *buff)
 {
+    clear_stack();
 
     int n = sizeofArray(playerlist);
     printf("Size of playerlist array: %d\n", n);
@@ -51,7 +55,7 @@ void leaderboard(struct player *playerlist, char *buff)
     for (int i = 0; i < n ; i++) //1 to n
     {
         // printf("%d. %s (id: %d): %d\n", i+1, playerlist[i].name, playerlist[i].id, playerlist[i].points);
-        char place[256];
+        char place[256] = {0};
         sprintf(place, "%d. %s (id: %d): %d\n", i+1, playerlist[i].name, playerlist[i].id, playerlist[i].points);
         strcat(buff, place);
     }
@@ -60,6 +64,8 @@ void leaderboard(struct player *playerlist, char *buff)
 
 int award_point(struct player *playerlist, int n, int playerid, char *guess, char *ans)
 { // player array, specific player index in array
+    clear_stack();
+    
     if (check_answer(guess, ans) == 0)
     {
         // printf("INSIDE AQARD POINT\n");

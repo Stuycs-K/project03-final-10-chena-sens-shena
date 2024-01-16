@@ -5,6 +5,8 @@
  *blocks until connection is made.*/
 int client_tcp_handshake(char *server_address)
 {
+    clear_stack();
+    
     // getaddrinfo
     struct addrinfo *hints, *results;
     hints = calloc(1, sizeof(struct addrinfo));
@@ -31,6 +33,8 @@ int client_tcp_handshake(char *server_address)
  */
 int server_tcp_handshake(int listen_socket)
 {
+    clear_stack();
+    
     // accept the client connection
     struct sockaddr_storage client_address;
     socklen_t sock_size = sizeof(client_address);
@@ -45,6 +49,8 @@ int server_tcp_handshake(int listen_socket)
  */
 int server_setup()
 {
+    clear_stack();
+    
     // setup structs for getaddrinfo
     struct addrinfo *hints, *results;
     hints = calloc(1, sizeof(struct addrinfo));
@@ -78,6 +84,8 @@ int server_setup()
 
 void err(int i, char *message)
 {
+    clear_stack();
+    
     if (i < 0)
     {
         printf("Error: %s - %s\n", message, strerror(errno));

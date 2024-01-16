@@ -6,5 +6,7 @@
 void convertLower(char *string);
 int rand_int();
 void write_all(char *msg, int index, struct player *players);
+void clear_stack();
+
 
 #endif
