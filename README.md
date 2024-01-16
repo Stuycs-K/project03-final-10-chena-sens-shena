@@ -33,3 +33,4 @@ How to Play as Host:
 2. Song doesn't play until after 15 s + client update event
 3. Chat doesn't persist during each round
 4. Players can spam guess the right answer and rack up points until round ends
+5. Guesses are wonky
