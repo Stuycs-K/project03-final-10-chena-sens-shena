@@ -21,30 +21,42 @@ int rand_int()
     return n;
 }
 
+void init_ncurses()
+{
+    initscr();
+    start_color();
+    init_pair('R', COLOR_RED, COLOR_BLACK);
+    init_pair('G', COLOR_GREEN, COLOR_BLACK);
+    init_pair('B', COLOR_BLUE, COLOR_BLACK);
+}
+
+void end_ncurses()
+{
+    attron(COLOR_PAIR('B'));
+    printw("Press any key to exit...");
+    attroff(COLOR_PAIR('B'));
+
+    getch();
+    endwin();
+}
+
 void write_all(char *msg, int index, struct player *players)
 {
     clear_stack();
 
     char buff[BUFFER_SIZE] = {0};
 
-    if (index != 0) // client
-    {
-        sprintf(buff, YELLOW "%s: " CLEAR "%s", players[index].name, msg);
-        write(players[index].id, ERASE, strlen(ERASE));
-    }
-   
+    // if (index != 0) // client
+    // {
+    //     sprintf(buff, YELLOW "%s" CLEAR, players[index].name, msg);
+    //     write(players[index].id, ERASE, strlen(ERASE));
+    // }
 
+    // clients
     for (int i = 0; i < MAX_PLAYERS; ++i)
         if (players[i].id != 0)
             write(players[i].id, buff, sizeof(buff));
 
-    printf("%s", buff);
-}
-
-// The funny man in my dreams say this prevents funny characters 
-void clear_stack() 
-{
-    volatile char buffer[0x10000] = {0};
-    memset(buffer, 0x00, 0x10000);
-    asm("");
+    // host
+    printw("%s", buff);
 }

@@ -1,9 +1,9 @@
 compile: _host _player
 
 _host: host.o game.o music.o networking.o utils.o
-	@gcc -mshstk -o host host.o game.o music.o networking.o utils.o
+	@gcc -o host host.o game.o music.o networking.o utils.o -lncurses
 _player: player.o networking.o utils.o
-	@gcc -mshstk -o player player.o networking.o utils.o
+	@gcc -o player player.o networking.o utils.o -lncurses
 
 game.o: src/game.c include/game.h include/imports.h include/music.h include/utils.h
 	@gcc -mshstk -c src/game.c 

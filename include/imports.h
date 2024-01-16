@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <ncurses.h>
 #include <netdb.h>
 #include <signal.h>
 #include <stdio.h>
@@ -19,18 +20,11 @@
 #include <unistd.h>
 
 #define PORT "19230"
-#define BUFFER_SIZE 256
+#define BUFFER_SIZE 1024
 
-#define BOLD "\e[1m"
-#define RED "\e[31m"
-#define GREEN "\e[32m"
-#define YELLOW "\e[33m"
-#define CLEAR "\e[0m"
-#define ERASE "\e[A\e[K"
-
-#define NAME_SIZE 256
-#define MAX_PLAYERS 2 // CHANGE LATER
-#define ROUND_DURATION 5
+#define NAME_SIZE 32
+#define MAX_PLAYERS 2    // CHANGE LATER
+#define ROUND_DURATION 1 // CHNGE LATER
 
 struct player
 {

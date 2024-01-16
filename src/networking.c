@@ -73,7 +73,6 @@ int server_setup()
 
     // set socket to listen state
     listen(clientd, 10);
-    printf("Listening on port %s\n", PORT);
 
     // free the structs used by getaddrinfo
     free(hints);
